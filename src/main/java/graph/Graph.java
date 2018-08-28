@@ -77,7 +77,15 @@ public class Graph <V,E>{
 		System.err.println(sb.toString());
 	}
 	
-	private boolean contains(String id){
+	public void printVertxs() {
+		System.out.println("Availble Vertexes IDs:");
+		int verticesSize = this.vertices.size();
+		for(int x = 0; x < verticesSize; x++ ) {
+			System.out.println(" * " + this.vertices.get(x).getId());
+		}
+	}
+	
+	public boolean contains(String id){
 		return vertices.stream().filter( v -> v.getId().equals(id)).findFirst().isPresent();
 	}
 	
