@@ -19,11 +19,13 @@ public class Graph <V,E>{
 		this.vertices = vertices; 
 	}
 	
-	public void addVertex(String id){
+	public void addVertex(String id, V value){
 		if(contains(id)){
 			throw new IllegalArgumentException("Vertex ("+ id +") already exists");
 		}
-		vertices.add(new Vertex<V,E>(id));
+		Vertex<V,E> vertex = new Vertex<V,E>(id);
+		vertex.setValue(value);
+		vertices.add(vertex);
 	}
 	
 	public void removeVertex(String id){
@@ -36,12 +38,12 @@ public class Graph <V,E>{
 		});
 	}
 	
-	public void addEdge(String id, String id1, String id2){
+	public void addEdge(String id, E value, String id1, String id2){
 		if(contains(id1) && contains(id2)){
 			Vertex<V,E> v1 = getVertex(id1);
 			Vertex<V,E> v2 = getVertex(id2);
-			v1.getEdges().add(new Edge<V,E>(id,v2));
-			v2.getEdges().add(new Edge<V,E>(id,v1));
+			v1.getEdges().add(new Edge<V,E>(id, value, v2));
+			v2.getEdges().add(new Edge<V,E>(id, value, v1));
 		}
 	}
 	
@@ -66,9 +68,9 @@ public class Graph <V,E>{
 	public void showGraph(){
 		StringBuilder sb = new StringBuilder();
 		vertices.forEach( v -> {
-			sb.append(v.getId() + " -> ");
+			sb.append(v.getId() + "("+ v.getValue() + ") -> ");
 			v.getEdges().forEach( e -> {
-				sb.append("(" + e.getId() + ") " + e.getVertex().getId() + " - ");
+				sb.append("(" + e.getId() + "-" + e.getValue() +") " + e.getVertex().getId() + " - ");
 			});
 			sb.append("\n");
 		});

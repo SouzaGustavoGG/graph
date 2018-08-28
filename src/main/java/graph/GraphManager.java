@@ -1,23 +1,22 @@
 package graph;
 
-import java.util.Scanner;
+import console.ConsoleScanner;
 
 public class GraphManager {
 	
-	private Graph<String,String> graph;
-	private Scanner scanner;
+	private Graph<String,Integer> graph;
+	private static ConsoleScanner console;
 	
 	public GraphManager(){
-		this.graph = new Graph<String,String>();
-		this.scanner  = new Scanner(System.in);
+		this.graph = new Graph<String,Integer>();
+		console = new ConsoleScanner();
 	}
 	
 	public void run(){
 		String inputOption = null;
 		do{
 			showOptions();
-			System.out.println("Enter a option: ");
-			inputOption = scanner.nextLine();
+			inputOption = console.readString("Enter a option: ");
 			execute(inputOption);
 		}while(!inputOption.equals("0"));
 	}
@@ -53,41 +52,33 @@ public class GraphManager {
 	}
 	
 	private void addVertex(){
-		System.out.println("Vertex id: ");
-		String id = scanner.nextLine();
-		System.out.println(id);
-		graph.addVertex(id);
+		String id = console.readString("Vertex id: ");
+		String value = console.readString("Vertex value: ");
+		graph.addVertex(id, value);
 	}
 	
 	private void removeVertex(){
-		System.out.println("Vertex id: ");
-		String id = scanner.nextLine();
+		String id = console.readString("Vertex id: ");
 		graph.removeVertex(id);
 	}
 	
 	private void addEdge(){
-		System.out.println("Edge vertex id1: ");
-		String id1 = scanner.nextLine();
-		System.out.println("Edge vertex id2: ");
-		String id2 = scanner.nextLine();
-		System.out.println("Edge id: ");
-		String id = scanner.nextLine();
-		graph.addEdge(id, id1, id2);
+		String id1 = console.readString("Edge vertex id1: ");
+		String id2 = console.readString("Edge vertex id2: ");
+		String id = console.readString("Edge id: ");
+		Integer value = console.readInt("Edge value: ");
+		graph.addEdge(id, value, id1, id2);
 	}
 	
 	private void removeEdge(){
-		System.out.println("Edge id1: ");
-		String id1 = scanner.nextLine();
-		System.out.println("Edge id2: ");
-		String id2 = scanner.nextLine();
+		String id1 = console.readString("Edge id1: ");
+		String id2 = console.readString("Edge id2: ");
 		graph.removeEdge(id1, id2);
 	}
 	
 	private void adjacent(){
-		System.out.println("Vertex id1: ");
-		String id1 = scanner.nextLine();
-		System.out.println("Vertex id2: ");
-		String id2 = scanner.nextLine();
+		String id1 = console.readString("Vertex id1: ");
+		String id2 = console.readString("Vertex id2: ");
 		System.err.println(graph.adjacent(id1, id2));
 	}
 	
