@@ -77,7 +77,7 @@ public class Graph <V,E>{
 		System.err.println(sb.toString());
 	}
 	
-	public void printVertxs() {
+	public void printVertexes() {
 		System.out.println("Availble Vertexes IDs:");
 		int verticesSize = this.vertices.size();
 		for(int x = 0; x < verticesSize; x++ ) {

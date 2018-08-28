@@ -63,7 +63,7 @@ public class GraphManager {
 	}
 	
 	private void addEdge(){
-		graph.printVertxs();
+		graph.printVertexes();
 		String id1 = console.readString("Edge vertex id1: ");
 		String id2 = console.readString("Edge vertex id2: ");
 		if(!graph.contains(id1) || !graph.contains(id2)) {
