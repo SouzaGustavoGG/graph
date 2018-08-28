@@ -75,6 +75,7 @@ public class Graph <V,E>{
 			sb.append("\n");
 		});
 		System.err.println(sb.toString());
+		
 	}
 	
 	private boolean contains(String id){

@@ -6,6 +6,19 @@
 	  <name>Graph</name>
 	  
 	  <dependencies>
+	  
+		  <dependency>
+		    <groupId>guru.nidi</groupId>
+		    <artifactId>graphviz-java</artifactId>
+		    <version>0.5.4</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>ch.qos.logback</groupId>
+		    <artifactId>logback-classic</artifactId>
+		    <version>1.2.3</version>
+		</dependency>
+		
 	  </dependencies>
   
       <build>

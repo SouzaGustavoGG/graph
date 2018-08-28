@@ -1,14 +1,19 @@
 package graph;
 
+import java.io.IOException;
+
 import console.ConsoleScanner;
+import console.Draw;
 
 public class GraphManager {
 	
 	private Graph<String,Integer> graph;
+	private Draw<String,Integer> draw;
 	private static ConsoleScanner console;
 	
 	public GraphManager(){
 		this.graph = new Graph<String,Integer>();
+		this.draw = new Draw<String, Integer>();
 		console = new ConsoleScanner();
 	}
 	
@@ -83,7 +88,12 @@ public class GraphManager {
 	}
 	
 	private void showGraph(){
-		graph.showGraph();
+		//graph.showGraph();
+		try {
+			draw.drawGraph(graph.getVertices(), "exemplo");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 }
