@@ -5,12 +5,14 @@ import static guru.nidi.graphviz.model.Factory.mutNode;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
-import graph.Vertex;
+import graph.Graph;
 import guru.nidi.graphviz.engine.Format;
 import guru.nidi.graphviz.engine.Graphviz;
 import guru.nidi.graphviz.model.MutableGraph;
+import guru.nidi.graphviz.model.MutableNode;
 
 public class Draw<V,E> {
 	
@@ -20,20 +22,28 @@ public class Draw<V,E> {
 		
 	}
 	
-	public void drawGraph(List<Vertex<V,E>> vertices, String title) throws IOException {
-		g = mutGraph(title).setDirected(true);
+	public void drawGraph(Graph<V,E> graph, String title) throws IOException {
+		List<String> verticesVisited = new ArrayList<>();
+		g = null;
+		g = mutGraph(title).setDirected(false);
 		
-		vertices.forEach( vertex -> {
-			if(vertex.getEdges().size() > 0) {
-				vertex.getEdges().forEach( edge -> {
-					g.add(mutNode(vertex.getId())).addLink(mutNode(edge.getId()));
-				});	
-			} else {
-				g.add(mutNode(vertex.getId()));
-			}
+		graph.getVertices().forEach( vertex -> {
+			verticesVisited.add(vertex.getId());
+			MutableNode node = mutNode(vertex.getId());
+			
+			vertex.getEdges().forEach( edge -> {
+				
+				if(!contains(verticesVisited, edge.getVertex().getId())) {
+					node.addLink(mutNode(edge.getVertex().getId()));
+				}
+			});
+			g.add(node);
 		});
-		
-		Graphviz.fromGraph(g).width(600).render(Format.PNG).toFile(new File("C:\\Users\\conta\\Desktop\\ex.png"));
+		Graphviz.fromGraph(g).width(600).render(Format.PNG).toFile(new File("graph.png"));
+	}
+	
+	private boolean contains(List<String> visited, String id){
+		return visited.stream().filter( v -> v.equals(id)).findFirst().isPresent();
 	}
 
 }

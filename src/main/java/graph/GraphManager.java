@@ -94,7 +94,7 @@ public class GraphManager {
 	private void showGraph(){
 		//graph.showGraph();
 		try {
-			draw.drawGraph(graph.getVertices(), "exemplo");
+			draw.drawGraph(graph, "exemplo");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
