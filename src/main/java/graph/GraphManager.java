@@ -1,7 +1,5 @@
 package graph;
 
-import java.io.IOException;
-
 import console.ConsoleScanner;
 import console.Draw;
 
@@ -12,7 +10,7 @@ public class GraphManager {
 	private static ConsoleScanner console;
 	
 	public GraphManager(){
-		this.graph = new Graph<String,Integer>();
+		this.graph = new Graph<String,Integer>(false);
 		this.draw = new Draw<String, Integer>();
 		console = new ConsoleScanner();
 	}
@@ -63,12 +61,13 @@ public class GraphManager {
 	}
 	
 	private void removeVertex(){
+		printVertices();
 		String id = console.readString("Vertex id: ");
 		graph.removeVertex(id);
 	}
 	
 	private void addEdge(){
-		graph.printVertexes();
+		printVertices();
 		String id1 = console.readString("Edge vertex id1: ");
 		String id2 = console.readString("Edge vertex id2: ");
 		if(!graph.contains(id1) || !graph.contains(id2)) {
@@ -92,11 +91,19 @@ public class GraphManager {
 	}
 	
 	private void showGraph(){
-		//graph.showGraph();
-		try {
-			draw.drawGraph(graph, "exemplo");
-		} catch (IOException e) {
-			e.printStackTrace();
+		graph.showGraph();
+//		try {
+//			draw.drawGraph(graph, "exemplo");
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+	}
+	
+	public void printVertices() {
+		System.out.println("Available Vertexes IDs:");
+		int verticesSize = graph.getVertices().size();
+		for(int x = 0; x < verticesSize; x++ ) {
+			System.out.println(" * " + graph.getVertices().get(x).getId());
 		}
 	}
 

@@ -6,9 +6,11 @@ import java.util.List;
 public class Graph <V,E>{
 	
 	private List<Vertex<V,E>> vertices;
+	private final boolean oriented;
 	
-	public Graph(){
+	public Graph(boolean oriented){
 		vertices = new ArrayList<>();
+		this.oriented = oriented;
 	}
 	
 	public List<Vertex<V,E>> getVertices(){
@@ -43,16 +45,20 @@ public class Graph <V,E>{
 			Vertex<V,E> v1 = getVertex(id1);
 			Vertex<V,E> v2 = getVertex(id2);
 			v1.getEdges().add(new Edge<V,E>(id, value, v2));
-			v2.getEdges().add(new Edge<V,E>(id, value, v1));
+			if(oriented) {
+				v2.getEdges().add(new Edge<V,E>(id, value, v1));
+			}
 		}
 	}
 	
 	public void removeEdge(String id1, String id2){
 		if(contains(id1) && contains(id2)){
 			Vertex<V,E> v1 = getVertex(id1);
-			Vertex<V,E> v2 = getVertex(id2);
 			v1.getEdges().removeIf(e -> e.getVertex().getId().equals(id2));
-			v2.getEdges().removeIf(e -> e.getVertex().getId().equals(id1));
+			if(oriented) {
+				Vertex<V,E> v2 = getVertex(id2);
+				v2.getEdges().removeIf(e -> e.getVertex().getId().equals(id1));
+			}
 		}
 	}
 	
@@ -78,20 +84,16 @@ public class Graph <V,E>{
 		
 	}
 	
-	public void printVertexes() {
-		System.out.println("Availble Vertexes IDs:");
-		int verticesSize = this.vertices.size();
-		for(int x = 0; x < verticesSize; x++ ) {
-			System.out.println(" * " + this.vertices.get(x).getId());
-		}
-	}
-	
 	public boolean contains(String id){
 		return vertices.stream().filter( v -> v.getId().equals(id)).findFirst().isPresent();
 	}
 	
 	private Vertex<V,E> getVertex(String id){
 		return vertices.stream().filter( v -> v.getId().equals(id)).findFirst().get();
+	}
+	
+	public boolean isOriented() {
+		return oriented;
 	}
 
 }
