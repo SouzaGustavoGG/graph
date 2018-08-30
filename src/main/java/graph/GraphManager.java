@@ -12,18 +12,26 @@ public class GraphManager {
 	private static ConsoleScanner console;
 	
 	public GraphManager(){
-		this.graph = new Graph<String,Integer>(true);
 		this.draw = new Draw<String, Integer>();
 		console = new ConsoleScanner();
 	}
 	
 	public void run(){
 		String inputOption = null;
+		createGraph();
 		do{
 			showOptions();
 			inputOption = console.readString("Enter a option: ");
 			execute(inputOption);
 		}while(!inputOption.equals("0"));
+	}
+	
+	private void createGraph() {
+		Boolean oriented = null;
+		do {
+			oriented = console.readBoolean("* Oriented Graph [Y] \n* Non-oriented Graph [N]:");
+		}while(oriented == null);
+		this.graph = new Graph<String,Integer>(oriented);
 	}
 	
 	private void showOptions(){

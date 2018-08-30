@@ -9,6 +9,17 @@ public class ConsoleScanner {
 	public ConsoleScanner() {
 	}
 	
+	public Boolean readBoolean(String msg) {
+		System.out.println(msg);
+		String option = scanner.nextLine();
+		option = option.toUpperCase();
+		switch(option) {
+			case "Y": return true;
+			case "N": return false;
+		}
+		return null;		
+	}
+	
 	public String readString(String msg) {
 		System.out.println(msg);
 		return scanner.nextLine();
