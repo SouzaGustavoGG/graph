@@ -45,7 +45,7 @@ public class Graph <V,E>{
 			Vertex<V,E> v1 = getVertex(id1);
 			Vertex<V,E> v2 = getVertex(id2);
 			v1.getEdges().add(new Edge<V,E>(id, value, v2));
-			if(oriented) {
+			if(!oriented) {
 				v2.getEdges().add(new Edge<V,E>(id, value, v1));
 			}
 		}
@@ -55,7 +55,7 @@ public class Graph <V,E>{
 		if(contains(id1) && contains(id2)){
 			Vertex<V,E> v1 = getVertex(id1);
 			v1.getEdges().removeIf(e -> e.getVertex().getId().equals(id2));
-			if(oriented) {
+			if(!oriented) {
 				Vertex<V,E> v2 = getVertex(id2);
 				v2.getEdges().removeIf(e -> e.getVertex().getId().equals(id1));
 			}

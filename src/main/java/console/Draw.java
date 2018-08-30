@@ -25,15 +25,16 @@ public class Draw<V,E> {
 	public void drawGraph(Graph<V,E> graph, String title) throws IOException {
 		List<String> verticesVisited = new ArrayList<>();
 		g = null;
-		g = mutGraph(title).setDirected(false);
+		g = mutGraph(title).setDirected(graph.isOriented());
 		
 		graph.getVertices().forEach( vertex -> {
 			verticesVisited.add(vertex.getId());
 			MutableNode node = mutNode(vertex.getId());
 			
 			vertex.getEdges().forEach( edge -> {
-				
-				if(!contains(verticesVisited, edge.getVertex().getId())) {
+				if(graph.isOriented()) {
+					node.addLink(mutNode(edge.getVertex().getId()));
+				} else if(!contains(verticesVisited, edge.getVertex().getId())) {
 					node.addLink(mutNode(edge.getVertex().getId()));
 				}
 			});

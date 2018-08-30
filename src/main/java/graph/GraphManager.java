@@ -1,5 +1,7 @@
 package graph;
 
+import java.io.IOException;
+
 import console.ConsoleScanner;
 import console.Draw;
 
@@ -10,7 +12,7 @@ public class GraphManager {
 	private static ConsoleScanner console;
 	
 	public GraphManager(){
-		this.graph = new Graph<String,Integer>(false);
+		this.graph = new Graph<String,Integer>(true);
 		this.draw = new Draw<String, Integer>();
 		console = new ConsoleScanner();
 	}
@@ -92,11 +94,11 @@ public class GraphManager {
 	
 	private void showGraph(){
 		graph.showGraph();
-//		try {
-//			draw.drawGraph(graph, "exemplo");
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
+		try {
+			draw.drawGraph(graph, "exemplo");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void printVertices() {
