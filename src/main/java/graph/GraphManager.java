@@ -85,7 +85,7 @@ public class GraphManager {
 			if(graph.contains(vertexId1)) {
 				break;
 			}
-			System.out.println("Invalid Source ID, please enter again \n");
+			System.out.println("Source ID doesn't exist! Please enter again \n");
 		}
 		
 		while(true) {
@@ -93,7 +93,7 @@ public class GraphManager {
 			if(graph.contains(vertexId2)) {
 				break;
 			}
-			System.out.println("Invalid Destination ID, please enter again \n");
+			System.out.println("Destination ID doesn't exist! Please enter again \n");
 		}
 
 		String edgeId = console.readString("Edge ID: ");

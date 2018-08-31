@@ -7,14 +7,18 @@ public class Vertex <V,E> implements Cloneable{
 	
 	private String id;
 	private V value;
+	private boolean visited;
 	private List<Edge<V,E>> edges;
+	private List<Vertex<V,E>> neighbors;
 	
-	public Vertex(String id){
+	public Vertex(String id) {
 		this.id = id;
 		this.edges = new ArrayList<>();
+		this.setNeighbors(new ArrayList<>());
+		this.setVisited(false);
 	}
 	
-	public String getId(){
+	public String getId() {
 		return id;
 	}
 	
@@ -32,6 +36,22 @@ public class Vertex <V,E> implements Cloneable{
 	
 	public void setValue(V value){
 		this.value = value;
+	}
+
+	public boolean isVisited() {
+		return visited;
+	}
+
+	public void setVisited(boolean visited) {
+		this.visited = visited;
+	}
+
+	public List<Vertex<V,E>> getNeighbors() {
+		return neighbors;
+	}
+
+	public void setNeighbors(List<Vertex<V,E>> neighbors) {
+		this.neighbors = neighbors;
 	}
 	
 //	@Override

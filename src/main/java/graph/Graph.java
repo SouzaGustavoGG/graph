@@ -45,6 +45,7 @@ public class Graph <V,E>{
 			Vertex<V,E> v1 = getVertex(id1);
 			Vertex<V,E> v2 = getVertex(id2);
 			v1.getEdges().add(new Edge<V,E>(id, value, v2));
+			v1.getNeighbors().add(v2);
 			if(!oriented) {
 				v2.getEdges().add(new Edge<V,E>(id, value, v1));
 			}
