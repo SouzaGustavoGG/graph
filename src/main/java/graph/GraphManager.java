@@ -78,14 +78,27 @@ public class GraphManager {
 	
 	private void addEdge(){
 		printVertices();
-		String id1 = console.readString("Edge vertex id1: ");
-		String id2 = console.readString("Edge vertex id2: ");
-		if(!graph.contains(id1) || !graph.contains(id2)) {
-			System.out.println("Invalid ids"); // Handle this
+		String vertexId1;
+		String vertexId2;
+		while(true) {
+			vertexId1 = console.readString("Source Edge ID: ");
+			if(graph.contains(vertexId1)) {
+				break;
+			}
+			System.out.println("Invalid Source ID, please enter again \n");
 		}
-		String id = console.readString("Edge id: ");
-		Integer value = console.readInt("Edge value: ");
-		graph.addEdge(id, value, id1, id2);
+		
+		while(true) {
+			vertexId2 = console.readString("Destination Edge ID: ");
+			if(graph.contains(vertexId2)) {
+				break;
+			}
+			System.out.println("Invalid Destination ID, please enter again \n");
+		}
+
+		String edgeId = console.readString("Edge ID: ");
+		Integer edgeValue = console.readInt("Edge Value: ");
+		graph.addEdge(edgeId, edgeValue, vertexId1, vertexId2);
 	}
 	
 	private void removeEdge(){
