@@ -61,7 +61,7 @@ public class BreadthFirstSearch <V, E extends Number>{
 		
 		if( predecessor == null) {
 			predecessors.add(new Predecessor<V,E>(distance, adjacent.getVertex(), currentVertex));
-		} else if (predecessor.getDistance().doubleValue() < distance.doubleValue()) {
+		} else if (predecessor.getDistance().doubleValue() > distance.doubleValue()) {
 			predecessor.setDistance(distance);
 			predecessor.setLastVertex(currentVertex);
 		}
@@ -83,11 +83,12 @@ public class BreadthFirstSearch <V, E extends Number>{
 		getBestWay((V)bestFinal.getVertex().getId(), linkedPredecessors);
 		
 		System.err.println("Best Final: Vertex -> " + bestFinal.getVertex().getId() +
-				" - Distance ->" + bestFinal.getDistance().doubleValue());
+				" - Distance ->" + bestFinal.getDistance().doubleValue() + "\n");
 		System.err.print("Best Way: " );
 		for(Predecessor<V,E> predecessor : linkedPredecessors) {
-			System.out.print( "g(" +predecessor.getVertex().getId() + ") ");
+			System.err.print( "g(" +predecessor.getVertex().getId() + ") ");
 		}
+		System.err.println("\n");
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -127,6 +128,15 @@ public class BreadthFirstSearch <V, E extends Number>{
 	public Predecessor<V,E> getPredecessor(V id){
 		for( Predecessor<V,E> p : predecessors) {
 			if(p.getVertex().getId().equals(id)) {
+				return p;
+			}
+		}
+		return null;
+	}
+	
+	public Predecessor<V,E> getPredecessor(V id, V lastid){
+		for( Predecessor<V,E> p : predecessors) {
+			if(p.getVertex().getId().equals(id) && p.getLastVertex().getId().equals(lastid)) {
 				return p;
 			}
 		}
