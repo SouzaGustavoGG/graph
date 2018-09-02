@@ -19,6 +19,16 @@ public class Graph <V,E>{
 		return vertices;
 	}
 	
+	public List<Edge<V,E>> getEdges() {
+		List<Vertex<V,E>> vertexes = this.getVertices();
+		List<Edge<V, E>> edges = new ArrayList<Edge<V,E>>();
+		vertexes.forEach(e -> {
+			edges.addAll(e.getEdges());
+		});
+		
+		return edges;
+	}
+	
 	public void setVertices(List<Vertex<V,E>> vertices){
 		this.vertices = vertices; 
 	}

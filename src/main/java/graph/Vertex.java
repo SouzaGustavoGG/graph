@@ -9,12 +9,10 @@ public class Vertex <V,E> implements Cloneable{
 	private V value;
 	private boolean visited;
 	private List<Edge<V,E>> edges;
-	//private List<Vertex<V,E>> neighbors;
 	
 	public Vertex(String id) {
 		this.id = id;
 		this.edges = new ArrayList<>();
-		//this.setNeighbors(new ArrayList<>());
 		this.setVisited(false);
 	}
 	
@@ -47,17 +45,12 @@ public class Vertex <V,E> implements Cloneable{
 	}
 
 	public List<Vertex<V,E>> getNeighbors() {
-		//return neighbors;
-		List<Vertex<V,E>> neighborsCopy = new ArrayList<>();
+		List<Vertex<V,E>> neighbors = new ArrayList<>();
 		edges.forEach( e -> {
-			neighborsCopy.add(e.getVertex());
+			neighbors.add(e.getVertex());
 		});
-		return neighborsCopy;
+		return neighbors;
 	}
-
-//	public void setNeighbors(List<Vertex<V,E>> neighbors) {
-//		this.neighbors = neighbors;
-//	}
 	
 	@Override
 	public Vertex<V,E> clone(){

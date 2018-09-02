@@ -80,34 +80,19 @@ public class GraphManager {
 		graph.removeVertex(id);
 	}
 	
-	private void addEdge(){
-		printVertices();
-		String vertexId1;
-		String vertexId2;
-		while(true) {
-			vertexId1 = console.readString("Source Edge ID: ");
-			if(graph.contains(vertexId1)) {
-				break;
-			}
-			System.out.println("Source ID doesn't exist! Please enter again \n");
-		}
-		
-		while(true) {
-			vertexId2 = console.readString("Destination Edge ID: ");
-			if(graph.contains(vertexId2)) {
-				break;
-			}
-			System.out.println("Destination ID doesn't exist! Please enter again \n");
-		}
+	private void addEdge() {
+		String vertexId1 = this.getAndVerifyIfExists("Source Edge ID: ", "Source ID doesn't exist! Please enter again \n");
+		String vertexId2 = this.getAndVerifyIfExists("Destination Edge ID: ", "Destination ID doesn't exist! Please enter again \n");
 
-		String edgeId = console.readString("Edge ID: ");
-		Integer edgeValue = console.readInt("Edge Value: ");
+		String edgeId = console.readString("New Edge ID: ");
+		Integer edgeValue = console.readInt("New Edge Value: ");
 		graph.addEdge(edgeId, edgeValue, vertexId1, vertexId2);
 	}
 	
 	private void removeEdge(){
 		String id1 = console.readString("Edge id1: ");
 		String id2 = console.readString("Edge id2: ");
+		
 		graph.removeEdge(id1, id2);
 	}
 	
@@ -141,10 +126,23 @@ public class GraphManager {
 	
 	public void printVertices() {
 		System.out.println("Available Vertexes IDs:");
-		int verticesSize = graph.getVertices().size();
-		for(int x = 0; x < verticesSize; x++ ) {
-			System.out.println(" * " + graph.getVertices().get(x).getId());
+		graph.getVertices().forEach(e -> {
+			System.out.println(" * " + e.getId());
+		});
+	}
+	
+	public String getAndVerifyIfExists(String msgInput, String msgOutput) {
+		String id;
+		while(true) {
+			printVertices();
+			id = console.readString(msgInput);
+			if(graph.contains(id)) {
+				break;
+			}
+			System.out.println(msgOutput);
 		}
+		
+		return id;
 	}
 
 }
