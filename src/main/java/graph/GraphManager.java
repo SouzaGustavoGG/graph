@@ -22,26 +22,31 @@ public class GraphManager {
 	public void run(boolean orientado){
 		String inputOption = null;
 		createGraph(orientado);
-                new mainMenuView();
+//                new mainMenuView();
+                
+		do{
+                    showOptions();
+                    inputOption = console.readString("Enter a option: ");
+                    execute(inputOption);
+		} while(!inputOption.equals("0"));
 	}
 	
 	private void createGraph(boolean orientado) {
 		this.graph = new Graph<String,Integer>(orientado);
 	}
 	
-	private void showOptions(){
-//            showOptionsView ops = new showOptionsView();
-//            System.out.println(new StringBuilder()
-//                    .append("==== Menu ====\n")
-//                    .append("Add Vertx [1]\n")
-//                    .append("Remove Vertex[2] \n")
-//                    .append("Add Edge [3]\n")
-//                    .append("Remove Edge [4]\n")
-//                    .append("Show Graph [5]\n")
-//                    .append("Adjacent [6]\n")
-//                    .append("Search BFS [7]\n")
-//                    .append("==============")
-//                    .toString());
+	private void showOptions(){            
+            System.out.println(new StringBuilder()
+                    .append("==== Menu ====\n")
+                    .append("Add Vertx [1]\n")
+                    .append("Remove Vertex[2] \n")
+                    .append("Add Edge [3]\n")
+                    .append("Remove Edge [4]\n")
+                    .append("Show Graph [5]\n")
+                    .append("Adjacent [6]\n")
+                    .append("Search BFS [7]\n")
+                    .append("==============")
+                    .toString());
 	}
 	
 	private void execute(String option){
