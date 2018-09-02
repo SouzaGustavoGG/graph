@@ -6,6 +6,7 @@ import java.util.List;
 
 import console.ConsoleScanner;
 import console.Draw;
+import ui.mainMenuView;
 
 public class GraphManager {
 	
@@ -18,36 +19,29 @@ public class GraphManager {
 		console = new ConsoleScanner();
 	}
 	
-	public void run(){
+	public void run(boolean orientado){
 		String inputOption = null;
-		createGraph();
-		do{
-			showOptions();
-			inputOption = console.readString("Enter a option: ");
-			execute(inputOption);
-		}while(!inputOption.equals("0"));
+		createGraph(orientado);
+                new mainMenuView();
 	}
 	
-	private void createGraph() {
-		Boolean oriented = null;
-		do {
-			oriented = console.readBoolean("* Oriented Graph [Y] \n* Non-oriented Graph [N]:");
-		}while(oriented == null);
-		this.graph = new Graph<String,Integer>(oriented);
+	private void createGraph(boolean orientado) {
+		this.graph = new Graph<String,Integer>(orientado);
 	}
 	
 	private void showOptions(){
-		System.out.println(new StringBuilder()
-			.append("==== Menu ====\n")
-			.append("Add Vertx [1]\n")
-			.append("Remove Vertex[2] \n")
-			.append("Add Edge [3]\n")
-			.append("Remove Edge [4]\n")
-			.append("Show Graph [5]\n")
-			.append("Adjacent [6]\n")
-			.append("Search BFS [7]\n")
-			.append("==============")
-			.toString());
+//            showOptionsView ops = new showOptionsView();
+//            System.out.println(new StringBuilder()
+//                    .append("==== Menu ====\n")
+//                    .append("Add Vertx [1]\n")
+//                    .append("Remove Vertex[2] \n")
+//                    .append("Add Edge [3]\n")
+//                    .append("Remove Edge [4]\n")
+//                    .append("Show Graph [5]\n")
+//                    .append("Adjacent [6]\n")
+//                    .append("Search BFS [7]\n")
+//                    .append("==============")
+//                    .toString());
 	}
 	
 	private void execute(String option){
