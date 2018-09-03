@@ -22,13 +22,13 @@ public class GraphManager {
 	public void run(boolean orientado){
 		String inputOption = null;
 		createGraph(orientado);
-//                new mainMenuView();
+                new mainMenuView(this.graph);
                 
-		do{
-                    showOptions();
-                    inputOption = console.readString("Enter a option: ");
-                    execute(inputOption);
-		} while(!inputOption.equals("0"));
+//		do{
+//                    showOptions();
+//                    inputOption = console.readString("Enter a option: ");
+//                    execute(inputOption);
+//		} while(!inputOption.equals("0"));
 	}
 	
 	private void createGraph(boolean orientado) {
@@ -50,21 +50,21 @@ public class GraphManager {
 	}
 	
 	private void execute(String option){
-		if(option == null) return;
-		try{
-			switch(option.toUpperCase()){
-				case "1": addVertex(); break;
-				case "2": removeVertex(); break;
-				case "3": addEdge(); break;
-				case "4": removeEdge(); break;
-				case "5": showGraph(); break;
-				case "6": adjacent(); break;
-				case "7": bfs(); break;
-				case "0": break;
-			}
-		} catch (IllegalArgumentException e){
-			System.out.println("**" + e.getMessage() + "**");
-		}
+            if(option == null) return;
+            try{
+                    switch(option.toUpperCase()){
+                            case "1": addVertex(); break;
+                            case "2": removeVertex(); break;
+                            case "3": addEdge(); break;
+                            case "4": removeEdge(); break;
+                            case "5": showGraph(); break;
+                            case "6": adjacent(); break;
+                            case "7": bfs(); break;
+                            case "0": break;
+                    }
+            } catch (IllegalArgumentException e){
+                    System.out.println("**" + e.getMessage() + "**");
+            }
 	}
 	
 	private void addVertex(){
