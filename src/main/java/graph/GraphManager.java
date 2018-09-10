@@ -6,6 +6,7 @@ import java.util.List;
 
 import console.ConsoleScanner;
 import console.Draw;
+import ui.DisplayImage;
 import ui.mainMenuView;
 
 public class GraphManager {
@@ -114,13 +115,16 @@ public class GraphManager {
 		graph.bfs(startid , finalIds);
 	}
 	
-	private void showGraph(){
-		graph.showGraph();
-		try {
-			draw.drawGraph(graph, "exemplo");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	private void showGraph() {
+            String graphName = "graph.png";
+            graph.showGraph();
+            try {
+                    draw.drawGraph(graph, graphName);
+            } catch (IOException e) {
+                    e.printStackTrace();
+            }
+            
+            new DisplayImage(graphName);                
 	}
 	
 	public void printVertices() {
