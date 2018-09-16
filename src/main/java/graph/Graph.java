@@ -85,6 +85,37 @@ public class Graph <V,E>{
 		}
 	}
 	
+	public void isPlanar(boolean cyclesGreaterThanThree) {
+		int verticesCount = vertices.size();
+		if(verticesCount > 3) {
+			int edgesCount = countEdges();
+			if(edgesCount <= (((3 * verticesCount) - 6)) && cyclesGreaterThanThree) {
+				System.err.println("Answer: Planar");
+			} else if((edgesCount <= ((2 * verticesCount) - 4)) && !cyclesGreaterThanThree){
+				System.err.println("Answer: Planar");	
+			} else {
+				System.err.println("Answer: Non Planar -> theorem on the number of vertices and edges doesn't occur ");
+			}
+		}
+	}
+	
+	private int countEdges() {
+		int edges = 0;
+		List<String> visited = new ArrayList<>();
+		
+		for(Vertex<V,E> v : vertices) {
+			for(Edge<V,E> e : v.getEdges()) {
+				if(!oriented && !contains(e.getVertex().getId(), visited)) {
+					visited.add(e.getVertex().getId());
+					edges++;
+				} else if(oriented){
+					edges++;
+				}
+			}
+		}
+		return edges;
+	}
+	
 	public void showGraph(){
 		StringBuilder sb = new StringBuilder();
 		vertices.forEach( v -> {
@@ -142,6 +173,10 @@ public class Graph <V,E>{
 	
 	private Vertex<V,E> getVertex(String id){
 		return vertices.stream().filter( v -> v.getId().equals(id)).findFirst().get();
+	}
+	
+	public boolean contains(String id, List<String> list) {
+		return list.stream().filter( s -> s.equals(id)).findFirst().isPresent();
 	}
 	
 	public boolean isOriented() {

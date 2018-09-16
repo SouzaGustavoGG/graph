@@ -46,6 +46,7 @@ public class GraphManager {
                     .append("Adjacent [6]\n")
                     .append("Search BFS [7]\n")
                     .append("Search DFS [8]\n")
+                    .append("Planar [9]\n")
                     .append("==============")
                     .toString());
 	}
@@ -62,6 +63,7 @@ public class GraphManager {
                             case "6": adjacent(); break;
                             case "7": bfs(); break;
                             case "8": dfs(); break;
+                            case "9": planar(); break;
                             case "0": break;
                     }
             } catch (IllegalArgumentException e){
@@ -127,6 +129,11 @@ public class GraphManager {
 			add = console.readBoolean("* Add new Final [Y][N]:");
 		}while(add && add != null);
 		graph.dfs(startid , finalIds);
+	}
+	
+	private void planar() {
+		Boolean cyclesGreaterThanThree = console.readBoolean("* Contains cycles greater than 3? [Y][N]:");
+		graph.isPlanar(cyclesGreaterThanThree);
 	}
 	
 	private void showGraph() {
