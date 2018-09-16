@@ -7,7 +7,6 @@ import java.util.List;
 import console.ConsoleScanner;
 import console.Draw;
 import ui.DisplayImage;
-import ui.mainMenuView;
 
 public class GraphManager {
 	
@@ -23,13 +22,13 @@ public class GraphManager {
 	public void run(boolean orientado){
 		String inputOption = null;
 		createGraph(orientado);
-                new mainMenuView(this.graph);
+         //       new mainMenuView(this.graph);
                 
-//		do{
-//                    showOptions();
-//                    inputOption = console.readString("Enter a option: ");
-//                    execute(inputOption);
-//		} while(!inputOption.equals("0"));
+		do{
+                    showOptions();
+                    inputOption = console.readString("Enter a option: ");
+                    execute(inputOption);
+		} while(!inputOption.equals("0"));
 	}
 	
 	private void createGraph(boolean orientado) {
@@ -46,6 +45,7 @@ public class GraphManager {
                     .append("Show Graph [5]\n")
                     .append("Adjacent [6]\n")
                     .append("Search BFS [7]\n")
+                    .append("Search DFS [8]\n")
                     .append("==============")
                     .toString());
 	}
@@ -61,6 +61,7 @@ public class GraphManager {
                             case "5": showGraph(); break;
                             case "6": adjacent(); break;
                             case "7": bfs(); break;
+                            case "8": dfs(); break;
                             case "0": break;
                     }
             } catch (IllegalArgumentException e){
@@ -113,6 +114,19 @@ public class GraphManager {
 			add = console.readBoolean("* Add new Final [Y][N]:");
 		}while(add && add != null);
 		graph.bfs(startid , finalIds);
+	}
+	
+	private void dfs() {
+		List<String> finalIds = new ArrayList<>();
+		String finalId = null;
+		String startid = console.readString("Start Vertex: ");
+		Boolean add = false;
+		do {
+			finalId = console.readString("Final Vertex: ");
+			finalIds.add(finalId);
+			add = console.readBoolean("* Add new Final [Y][N]:");
+		}while(add && add != null);
+		graph.dfs(startid , finalIds);
 	}
 	
 	private void showGraph() {

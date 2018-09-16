@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import graph.search.BreadthFirstSearch;
+import graph.search.DepthFirstSearch;
 
 public class Graph <V,E>{
 	
@@ -113,7 +114,26 @@ public class Graph <V,E>{
 				System.err.println(" ** final id(" + finalId + ") não encontrado");
 			}
 		}
-		new BreadthFirstSearch(this, initialVertex, finalVertices).search();
+		new BreadthFirstSearch(initialVertex, finalVertices).search();
+	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public void dfs(String id, List<String> finalIds) {
+		Vertex<V,E> initialVertex = null;
+		List<Vertex<V,E>> finalVertices = new ArrayList<>();
+		if(contains(id)) {
+			initialVertex = getVertex(id);
+		} else {
+			System.err.println(" ** initial id(" + id + ") não encontrado");
+		}
+		for(String finalId : finalIds) {
+			if(contains(finalId)) {
+				finalVertices.add(getVertex(finalId));
+			} else {
+				System.err.println(" ** final id(" + finalId + ") não encontrado");
+			}
+		}
+		new DepthFirstSearch(initialVertex, finalVertices).search();
 	}
 	
 	public boolean contains(String id){
