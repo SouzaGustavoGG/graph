@@ -7,6 +7,7 @@ import java.util.List;
 import console.ConsoleScanner;
 import console.Draw;
 import ui.DisplayImage;
+import ui.mainMenuView;
 
 public class GraphManager {
 	
@@ -20,15 +21,15 @@ public class GraphManager {
 	}
 	
 	public void run(boolean orientado){
-		String inputOption = null;
+//		String inputOption = null;
 		createGraph(orientado);
-         //       new mainMenuView(this.graph);
+                new mainMenuView(this.graph);
                 
-		do{
-                    showOptions();
-                    inputOption = console.readString("Enter a option: ");
-                    execute(inputOption);
-		} while(!inputOption.equals("0"));
+//		do{
+//                    showOptions();
+//                    inputOption = console.readString("Enter a option: ");
+//                    execute(inputOption);
+//		} while(!inputOption.equals("0"));
 	}
 	
 	private void createGraph(boolean orientado) {
