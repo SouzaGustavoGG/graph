@@ -52,12 +52,21 @@ public class Prim <V,E extends Number> {
 				String v1 = keys[0];
 				String v2 = keys[1];
 				
-				if(lowest > v.doubleValue() && (!contains(v1, visited) || !contains(v2,visited))) {
-					lowest = v.doubleValue();
-					lowestV1 = v1;
-					lowestV2 = v2;
+				if(lowest > v.doubleValue()) {
+					if(visited.size() == 0 && !contains(v1, visited) && !contains(v2,visited)) {
+						lowest = v.doubleValue();
+						lowestV1 = v1;
+						lowestV2 = v2;
+					} else if(visited.size() > 0 && !contains(v1, visited) && contains(v2,visited)) {
+						lowest = v.doubleValue();
+						lowestV1 = v1;
+						lowestV2 = v2;
+					} else if(visited.size() > 0 && contains(v1, visited) && !contains(v2,visited)) {
+						lowest = v.doubleValue();
+						lowestV1 = v1;
+						lowestV2 = v2;
+					}					
 				}
-
 			});
 			values.add(lowest);
 			if(!contains(lowestV1, visited)) {
