@@ -95,8 +95,7 @@ public class GraphManager {
 	
 	private void removeEdge(){
 		String id1 = console.readString("Edge id1: ");
-		String id2 = console.readString("Edge id2: ");
-		
+		String id2 = console.readString("Edge id2: ");		
 		graph.removeEdge(id1, id2);
 	}
 	
@@ -134,7 +133,7 @@ public class GraphManager {
 	
 	private void planar() {
 		Boolean cyclesGreaterThanThree = console.readBoolean("* Contains cycles greater than 3? [Y][N]:");
-		graph.isPlanar(cyclesGreaterThanThree);
+		Boolean isPlanar = graph.isPlanar(cyclesGreaterThanThree);
 	}
 	
 	private void showGraph() {

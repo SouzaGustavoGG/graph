@@ -54,6 +54,7 @@ public class mainMenuView extends javax.swing.JFrame {
         jButtonShowGraph = new javax.swing.JButton();
         jButtonAdjacentes = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
+        jButtonPlanaridade = new javax.swing.JButton();
 
         jToggleButton1.setText("jToggleButton1");
 
@@ -130,6 +131,13 @@ public class mainMenuView extends javax.swing.JFrame {
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Grafo");
 
+        jButtonPlanaridade.setText("Planaridade");
+        jButtonPlanaridade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPlanaridadeActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -164,10 +172,12 @@ public class mainMenuView extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jButtonPrimSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(62, 62, 62))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonShowGraph, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(226, 226, 226))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(139, 139, 139)
+                .addComponent(jButtonShowGraph, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButtonPlanaridade, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -184,11 +194,13 @@ public class mainMenuView extends javax.swing.JFrame {
                     .addComponent(jButtonMenuVertex, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButtonAdjacentes, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonShowGraph, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonPlanaridade, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonShowGraph, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(13, 13, 13)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -248,9 +260,17 @@ public class mainMenuView extends javax.swing.JFrame {
     private void jButtonAdjacentesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdjacentesActionPerformed
         String id1 = JOptionPane.showInputDialog("Insira o ID do Vértice 1");
         String id2 = JOptionPane.showInputDialog("Insira o ID do Vértice 2");
-        String ehAdjacente = (graph.adjacent(id1, id2)) ? "Sim" : "Não";
-        JOptionPane.showMessageDialog(null, "Os vértices " + id1 + " e " + id2 + " são adjacentes? \n\n" + ehAdjacente);
+        String isAdjacente = (graph.adjacent(id1, id2)) ? "Sim" : "Não";
+        JOptionPane.showMessageDialog(null, "Os vértices " + id1 + " e " + id2 + " são adjacentes? \n\n"
+                + "                       " + isAdjacente);
     }//GEN-LAST:event_jButtonAdjacentesActionPerformed
+
+    private void jButtonPlanaridadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPlanaridadeActionPerformed
+        String cyclesGreaterThanThree = JOptionPane.showInputDialog("Possui ciclos maiores que 3? [Y] ou [N]: ");
+        String isPlanar = (graph.isPlanar(cyclesGreaterThanThree.equals("Y"))) ? "Sim" : "Não";
+        JOptionPane.showMessageDialog(null, "O Grafo é planar? \n"
+                + "                " + isPlanar);
+    }//GEN-LAST:event_jButtonPlanaridadeActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -260,6 +280,7 @@ public class mainMenuView extends javax.swing.JFrame {
     private javax.swing.JButton jButtonDFSearch;
     private javax.swing.JButton jButtonExit;
     private javax.swing.JButton jButtonMenuVertex;
+    private javax.swing.JButton jButtonPlanaridade;
     private javax.swing.JButton jButtonPrimSearch;
     private javax.swing.JButton jButtonShowGraph;
     private javax.swing.JLabel jLabel2;
