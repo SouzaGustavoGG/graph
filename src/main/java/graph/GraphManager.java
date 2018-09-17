@@ -21,7 +21,7 @@ public class GraphManager {
 	}
 	
 	public void run(boolean orientado){
-//		String inputOption = null;
+		String inputOption = null;
 		createGraph(orientado);
                 new mainMenuView(this.graph);
                 
@@ -48,6 +48,7 @@ public class GraphManager {
                     .append("Search BFS [7]\n")
                     .append("Search DFS [8]\n")
                     .append("Planar [9]\n")
+                    .append("Prim [10)\n")
                     .append("==============")
                     .toString());
 	}
@@ -65,6 +66,7 @@ public class GraphManager {
                             case "7": bfs(); break;
                             case "8": dfs(); break;
                             case "9": planar(); break;
+                            case "10": prim(); break;
                             case "0": break;
                     }
             } catch (IllegalArgumentException e){
@@ -134,6 +136,10 @@ public class GraphManager {
 	private void planar() {
 		Boolean cyclesGreaterThanThree = console.readBoolean("* Contains cycles greater than 3? [Y][N]:");
 		Boolean isPlanar = graph.isPlanar(cyclesGreaterThanThree);
+	}
+	
+	private void prim() {
+		graph.prim();
 	}
 	
 	private void showGraph() {

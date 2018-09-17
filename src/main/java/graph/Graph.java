@@ -5,6 +5,7 @@ import java.util.List;
 
 import graph.search.BreadthFirstSearch;
 import graph.search.DepthFirstSearch;
+import graph.search.Prim;
 
 public class Graph <V,E>{
 	
@@ -170,6 +171,10 @@ public class Graph <V,E>{
 			}
 		}
 		new DepthFirstSearch(initialVertex, finalVertices).search();
+	}
+	
+	public void prim() {
+		new Prim(this).search();
 	}
 	
 	public boolean contains(String id){
