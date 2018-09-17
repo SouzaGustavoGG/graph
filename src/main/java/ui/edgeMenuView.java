@@ -6,6 +6,8 @@
 package ui;
 
 import graph.Graph;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 
 /**
  *
@@ -21,6 +23,8 @@ public class edgeMenuView extends javax.swing.JFrame {
     public edgeMenuView(Graph graph) {
         this.graph = graph;
         initComponents();
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
         this.setVisible(true);
     }
 
@@ -108,6 +112,11 @@ public class edgeMenuView extends javax.swing.JFrame {
         });
 
         jButtonSair.setText("Sair");
+        jButtonSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSairActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("ID Vértice Origem");
 
@@ -153,7 +162,7 @@ public class edgeMenuView extends javax.swing.JFrame {
                                 .addGap(126, 126, 126)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
                                     .addComponent(jTextFieldDestino, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jTextFieldOrigem, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabelRemoveEdge, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
@@ -198,7 +207,7 @@ public class edgeMenuView extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonAddEdge)
                     .addComponent(jButtonRemoveEdge))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
                 .addComponent(jButtonSair)
                 .addContainerGap())
         );
@@ -231,6 +240,11 @@ public class edgeMenuView extends javax.swing.JFrame {
         this.dispose();
         new mainMenuView(this.graph);
     }//GEN-LAST:event_jButtonRemoveEdgeActionPerformed
+
+    private void jButtonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairActionPerformed
+        this.dispose();
+        new mainMenuView(this.graph);
+    }//GEN-LAST:event_jButtonSairActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
