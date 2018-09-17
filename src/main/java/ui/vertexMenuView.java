@@ -57,8 +57,6 @@ public class vertexMenuView extends javax.swing.JFrame {
         jLabelTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelTitle.setText("Vértices");
 
-        //jTextFieldNewId.setText("ID...");
-
         jLabelNewId.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
         jLabelNewId.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabelNewId.setText("ID Novo Vértice");
@@ -66,8 +64,6 @@ public class vertexMenuView extends javax.swing.JFrame {
         jLabelNewValue.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
         jLabelNewValue.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabelNewValue.setText("Valor Novo Vértice");
-
-        //jTextFieldNewValue.setText("Valor...");
 
         jButtonAddVertex.setText("Adicionar");
         jButtonAddVertex.addActionListener(new java.awt.event.ActionListener() {
@@ -86,7 +82,6 @@ public class vertexMenuView extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel1.setText("ID Vértice Antigo");
 
-        //jTextFieldOldId.setText("ID...");
         jTextFieldOldId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldOldIdActionPerformed(evt);
@@ -207,9 +202,14 @@ public class vertexMenuView extends javax.swing.JFrame {
 
     private void jButtonRemoveVertexActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoveVertexActionPerformed
         String id = this.jTextFieldOldId.getText();
-        this.graph.removeVertex(id);
+        Boolean removed = this.graph.removeVertex(id);
+        if(!removed) {
+            JOptionPane.showMessageDialog(null, "O vértice de ID: " + id + " não existe!");
+            return;
+        }
         this.dispose();
         new mainMenuView(this.graph);
+        
     }//GEN-LAST:event_jButtonRemoveVertexActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

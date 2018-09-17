@@ -165,21 +165,15 @@
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
         <Property name="horizontalAlignment" type="int" value="4"/>
-        <Property name="text" type="java.lang.String" value="ID Arco Origem"/>
+        <Property name="text" type="java.lang.String" value="ID V&#xe9;rtice Origem"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldOrigem">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="ID..."/>
-      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldOrigemActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldNewId">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="ID..."/>
-      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldNewIdActionPerformed"/>
       </Events>
@@ -203,9 +197,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldNewValue">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Valor..."/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jButtonRemoveEdge">
       <Properties>
@@ -234,25 +225,16 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldVerticeOrigemId">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="ID..."/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldVerticeDestinoId">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="ID..."/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
         <Property name="horizontalAlignment" type="int" value="4"/>
-        <Property name="text" type="java.lang.String" value="ID Arco Destino"/>
+        <Property name="text" type="java.lang.String" value="ID V&#xe9;rtice Destino"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldDestino">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="ID..."/>
-      </Properties>
     </Component>
   </SubComponents>
 </Form>

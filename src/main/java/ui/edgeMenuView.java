@@ -61,7 +61,7 @@ public class edgeMenuView extends javax.swing.JFrame {
 
         jLabelTitle.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
         jLabelTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelTitle.setText("Arcos/Arestas");
+        jLabelTitle.setText("Arcos");
 
         jButtonAddEdge.setText("Adicionar");
         jButtonAddEdge.addActionListener(new java.awt.event.ActionListener() {
@@ -79,16 +79,14 @@ public class edgeMenuView extends javax.swing.JFrame {
         jLabelRemoveEdge.setText("Remover Arco");
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel1.setText("ID Arco Origem");
+        jLabel1.setText("ID Vértice Origem");
 
-        //jTextFieldOrigem.setText("ID...");
         jTextFieldOrigem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldOrigemActionPerformed(evt);
             }
         });
 
-        //jTextFieldNewId.setText("ID...");
         jTextFieldNewId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldNewIdActionPerformed(evt);
@@ -102,8 +100,6 @@ public class edgeMenuView extends javax.swing.JFrame {
         jLabelNewValue.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         jLabelNewValue.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabelNewValue.setText("Valor Novo Arco");
-
-        //jTextFieldNewValue.setText("Valor...");
 
         jButtonRemoveEdge.setText("Remover");
         jButtonRemoveEdge.addActionListener(new java.awt.event.ActionListener() {
@@ -123,14 +119,8 @@ public class edgeMenuView extends javax.swing.JFrame {
 
         jLabel3.setText("ID Vértice Destino");
 
-        //jTextFieldVerticeOrigemId.setText("ID...");
-
-        //jTextFieldVerticeDestinoId.setText("ID...");
-
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel4.setText("ID Arco Destino");
-
-        //jTextFieldDestino.setText("ID...");
+        jLabel4.setText("ID Vértice Destino");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -247,7 +237,11 @@ public class edgeMenuView extends javax.swing.JFrame {
     private void jButtonRemoveEdgeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoveEdgeActionPerformed
         String id1 = this.jTextFieldOrigem.getText();
         String id2 = this.jTextFieldDestino.getText();
-        graph.removeEdge(id1, id2);
+        Boolean removed = graph.removeEdge(id1, id2);
+        if(!removed) {
+            JOptionPane.showMessageDialog(null, "O vértice de origem: " + id1 + " ou destino: " + id2 + " não existe!");
+            return;
+        }
         this.dispose();
         new mainMenuView(this.graph);
     }//GEN-LAST:event_jButtonRemoveEdgeActionPerformed

@@ -44,14 +44,15 @@ public class Graph <V,E>{
 		vertices.add(vertex);
 	}
 	
-	public void removeVertex(String id){
+	public Boolean removeVertex(String id){
 		if(!contains(id)){
-			throw new IllegalArgumentException("Vertex ("+ id +") not exists");
+                    return false;
 		}
 		vertices.removeIf(v -> v.getId().equals(id));
 		vertices.forEach( v -> {
 			v.getEdges().removeIf(e -> e.getVertex().getId().equals(id));
 		});
+                return true;
 	}
 	
 	public void addEdge(String id, E value, String id1, String id2){
@@ -66,7 +67,7 @@ public class Graph <V,E>{
 		}
 	}
 	
-	public void removeEdge(String id1, String id2){
+	public Boolean removeEdge(String id1, String id2){
 		if(contains(id1) && contains(id2)){
 			Vertex<V,E> v1 = getVertex(id1);
 			v1.getEdges().removeIf(e -> e.getVertex().getId().equals(id2));
@@ -74,7 +75,10 @@ public class Graph <V,E>{
 				Vertex<V,E> v2 = getVertex(id2);
 				v2.getEdges().removeIf(e -> e.getVertex().getId().equals(id1));
 			}
+                    return true;
 		}
+                
+                return false;
 	}
 	
 	public boolean adjacent(String id1, String id2){
