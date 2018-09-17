@@ -5,10 +5,12 @@
  */
 package ui;
 
-import graph.Graph;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+
 import javax.swing.JOptionPane;
+
+import graph.Graph;
 
 /**
  *
@@ -61,7 +63,7 @@ public class edgeMenuView extends javax.swing.JFrame {
 
         jLabelTitle.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
         jLabelTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelTitle.setText("Arcos");
+        jLabelTitle.setText("Arcos/Arestas");
 
         jButtonAddEdge.setText("Adicionar");
         jButtonAddEdge.addActionListener(new java.awt.event.ActionListener() {
@@ -81,14 +83,14 @@ public class edgeMenuView extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel1.setText("ID Arco Origem");
 
-        jTextFieldOrigem.setText("ID...");
+        //jTextFieldOrigem.setText("ID...");
         jTextFieldOrigem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldOrigemActionPerformed(evt);
             }
         });
 
-        jTextFieldNewId.setText("ID...");
+        //jTextFieldNewId.setText("ID...");
         jTextFieldNewId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldNewIdActionPerformed(evt);
@@ -103,7 +105,7 @@ public class edgeMenuView extends javax.swing.JFrame {
         jLabelNewValue.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabelNewValue.setText("Valor Novo Arco");
 
-        jTextFieldNewValue.setText("Valor...");
+        //jTextFieldNewValue.setText("Valor...");
 
         jButtonRemoveEdge.setText("Remover");
         jButtonRemoveEdge.addActionListener(new java.awt.event.ActionListener() {
@@ -123,14 +125,14 @@ public class edgeMenuView extends javax.swing.JFrame {
 
         jLabel3.setText("ID Vértice Destino");
 
-        jTextFieldVerticeOrigemId.setText("ID...");
+        //jTextFieldVerticeOrigemId.setText("ID...");
 
-        jTextFieldVerticeDestinoId.setText("ID...");
+        //jTextFieldVerticeDestinoId.setText("ID...");
 
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel4.setText("ID Arco Destino");
 
-        jTextFieldDestino.setText("ID...");
+        //jTextFieldDestino.setText("ID...");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

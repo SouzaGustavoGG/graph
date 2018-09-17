@@ -88,21 +88,18 @@ public class Graph <V,E>{
 	
 	public Boolean isPlanar(boolean cyclesGreaterThanThree) {
 		int verticesCount = vertices.size();
-                Boolean isPlanar = false;
+                Boolean isPlanar = true;
 		if(verticesCount > 3) {
 			int edgesCount = countEdges();
-			if(edgesCount <= (((3 * verticesCount) - 6)) && cyclesGreaterThanThree) {
-				System.err.println("Answer: Planar");
-                                isPlanar = true;
-			} else if((edgesCount <= ((2 * verticesCount) - 4)) && !cyclesGreaterThanThree){
-				System.err.println("Answer: Planar");
-                                isPlanar = true;
-			} else {
+			if(!(edgesCount <= (((3 * verticesCount) - 6)) && cyclesGreaterThanThree)) {
 				System.err.println("Answer: Non Planar -> theorem on the number of vertices and edges doesn't occur ");
-			}
-		}
-                
-                return isPlanar;
+                                isPlanar = false;
+			} else if(!((edgesCount <= ((2 * verticesCount) - 4)) && !cyclesGreaterThanThree)){
+				System.err.println("Answer: Non Planar -> theorem on the number of vertices and edges doesn't occur ");
+                                isPlanar = false;
+			} 
+		}                
+        return isPlanar;
 	}
 	
 	private int countEdges() {

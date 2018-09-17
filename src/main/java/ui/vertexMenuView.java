@@ -5,10 +5,12 @@
  */
 package ui;
 
-import graph.Graph;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+
 import javax.swing.JOptionPane;
+
+import graph.Graph;
 
 /**
  *
@@ -57,7 +59,7 @@ public class vertexMenuView extends javax.swing.JFrame {
         jLabelTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelTitle.setText("Vértices");
 
-        jTextFieldNewId.setText("ID...");
+        //jTextFieldNewId.setText("ID...");
 
         jLabelNewId.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
         jLabelNewId.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -67,7 +69,7 @@ public class vertexMenuView extends javax.swing.JFrame {
         jLabelNewValue.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabelNewValue.setText("Valor Novo Vértice");
 
-        jTextFieldNewValue.setText("Valor...");
+        //jTextFieldNewValue.setText("Valor...");
 
         jButtonAddVertex.setText("Adicionar");
         jButtonAddVertex.addActionListener(new java.awt.event.ActionListener() {
@@ -86,7 +88,7 @@ public class vertexMenuView extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel1.setText("ID Vértice Antigo");
 
-        jTextFieldOldId.setText("ID...");
+        //jTextFieldOldId.setText("ID...");
         jTextFieldOldId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldOldIdActionPerformed(evt);
