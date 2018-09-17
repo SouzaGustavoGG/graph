@@ -5,6 +5,7 @@
  */
 package ui;
 
+import graph.Graph;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 
@@ -15,7 +16,7 @@ import graph.GraphManager;
  * @author geevb
  */
 public class welcomeView extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form welcomeView
      */
@@ -113,16 +114,16 @@ public class welcomeView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonNaoOrientadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNaoOrientadoActionPerformed
-        GraphManager gm = new GraphManager();
+        Graph graph = new Graph<String,Integer>(false);
         this.dispose();
-        gm.run(false);
+        new mainMenuView(graph);
 
     }//GEN-LAST:event_jButtonNaoOrientadoActionPerformed
 
     private void jButtonOrientadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOrientadoActionPerformed
-        GraphManager gm = new GraphManager();
+        Graph graph = new Graph<String,Integer>(true);
         this.dispose();
-        gm.run(true);
+        new mainMenuView(graph);
     }//GEN-LAST:event_jButtonOrientadoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

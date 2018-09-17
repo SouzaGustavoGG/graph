@@ -7,9 +7,7 @@ package ui;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
-
 import javax.swing.JOptionPane;
-
 import graph.Graph;
 
 /**
@@ -222,7 +220,7 @@ public class edgeMenuView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonAddEdgeActionPerformed(java.awt.event.ActionEvent evt) { //GEN-FIRST:event_jButtonAddEdgeActionPerformed
+    private void jButtonAddEdgeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddEdgeActionPerformed
         String id = this.jTextFieldNewId.getText();
         String vertexId1 = this.jTextFieldVerticeOrigemId.getText();
         String vertexId2 = this.jTextFieldVerticeDestinoId.getText();    

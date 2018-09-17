@@ -19,9 +19,6 @@ public class Prim <V,E extends Number> {
 	private Map<String,E> matrix; 
 	
 	public Prim(Graph<V,E> graph) {
-		if(graph.isOriented()) {
-			throw new IllegalArgumentException("Graph must be non oriented");
-		}
 		this.graph = graph;
 		visited = new ArrayList<>();
 		matrix = new HashMap<>();

@@ -8,16 +8,10 @@ package ui;
 import console.Draw;
 import graph.Graph;
 import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.Toolkit;
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 
 /**
@@ -235,7 +229,7 @@ public class mainMenuView extends javax.swing.JFrame {
         do {
             finalIds.add(JOptionPane.showInputDialog("Insira o ID do Vértice Final"));
             addNewFinalVertex = JOptionPane.showInputDialog("Deseja inserir um novo Vértice Final [Y] ou [N]");
-        }while(addNewFinalVertex.equals("Y"));
+        }while(addNewFinalVertex.equals("Y") || addNewFinalVertex.equals("y"));
         
         this.graph.bfs(startid , finalIds);
     }//GEN-LAST:event_jButtonBFSearchActionPerformed
@@ -274,7 +268,7 @@ public class mainMenuView extends javax.swing.JFrame {
         do {
             finalIds.add(JOptionPane.showInputDialog("Insira o ID do Vértice Final"));
             addNewFinalVertex = JOptionPane.showInputDialog("Deseja inserir um novo Vértice Final [Y] ou [N]");
-        }while(addNewFinalVertex.equals("Y"));
+        }while(addNewFinalVertex.equals("Y") || addNewFinalVertex.equals("y"));
         
         this.graph.dfs(startid , finalIds);
     }//GEN-LAST:event_jButtonDFSearchActionPerformed
@@ -295,7 +289,11 @@ public class mainMenuView extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonPlanaridadeActionPerformed
 
     private void jButtonPrimSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPrimSearchActionPerformed
-        graph.prim();
+        if(graph.isOriented()) {
+            JOptionPane.showMessageDialog(null, "O grafo deve ser Não-Orientado!");
+        } else {
+            graph.prim();
+        }
     }//GEN-LAST:event_jButtonPrimSearchActionPerformed
 
 
