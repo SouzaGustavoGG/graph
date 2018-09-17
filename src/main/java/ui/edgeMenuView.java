@@ -8,6 +8,7 @@ package ui;
 import graph.Graph;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -219,11 +220,17 @@ public class edgeMenuView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonAddEdgeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddEdgeActionPerformed
+    private void jButtonAddEdgeActionPerformed(java.awt.event.ActionEvent evt) { //GEN-FIRST:event_jButtonAddEdgeActionPerformed
         String id = this.jTextFieldNewId.getText();
-        String value = this.jTextFieldNewValue.getText();
         String vertexId1 = this.jTextFieldVerticeOrigemId.getText();
-        String vertexId2 = this.jTextFieldVerticeDestinoId.getText();        
+        String vertexId2 = this.jTextFieldVerticeDestinoId.getText();    
+        int value;
+        try {
+            value = Integer.parseInt(this.jTextFieldNewValue.getText());
+        } catch(NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "O valor do arco precisa ser um int!");
+            return;
+        }
         graph.addEdge(id, value, vertexId1, vertexId2);
         this.dispose();
         new mainMenuView(this.graph);

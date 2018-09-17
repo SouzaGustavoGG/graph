@@ -8,6 +8,7 @@ package ui;
 import graph.Graph;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -192,7 +193,13 @@ public class vertexMenuView extends javax.swing.JFrame {
 
     private void jButtonAddVertexActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddVertexActionPerformed
         String id = this.jTextFieldNewId.getText();
-        String value = this.jTextFieldNewValue.getText();
+        int value;
+        try {
+            value = Integer.parseInt(this.jTextFieldNewValue.getText());
+        } catch(NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "O valor do vértice precisa ser um int!");
+            return;
+        }
         this.graph.addVertex(id, value);
         this.dispose();
         new mainMenuView(this.graph);
