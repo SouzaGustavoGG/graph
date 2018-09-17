@@ -28,6 +28,7 @@ public class GraphManager {
 	
 	private void createGraph(boolean orientado) {
 		this.graph = new Graph<String,Integer>(orientado);
+		System.out.println(graph.isOriented());
 	}
 	
 	private void showOptions(){            

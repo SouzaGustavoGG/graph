@@ -5,9 +5,10 @@
  */
 package ui;
 
-import graph.GraphManager;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+
+import graph.GraphManager;
 
 /**
  *
@@ -114,14 +115,14 @@ public class welcomeView extends javax.swing.JFrame {
     private void jButtonNaoOrientadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNaoOrientadoActionPerformed
         GraphManager gm = new GraphManager();
         this.dispose();
-        gm.run(true);
+        gm.run(false);
 
     }//GEN-LAST:event_jButtonNaoOrientadoActionPerformed
 
     private void jButtonOrientadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOrientadoActionPerformed
         GraphManager gm = new GraphManager();
         this.dispose();
-        gm.run(false);
+        gm.run(true);
     }//GEN-LAST:event_jButtonOrientadoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
