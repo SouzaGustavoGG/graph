@@ -5,12 +5,19 @@
  */
 package ui;
 
-import console.ConsoleScanner;
+import console.Draw;
 import graph.Graph;
 import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Toolkit;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,7 +26,8 @@ import javax.swing.JOptionPane;
  */
 public class mainMenuView extends javax.swing.JFrame {
     
-    Graph graph;
+    private Graph graph;
+    private Draw<String,Integer> draw;
     /**
      * Creates new form mainMenuView
      */
@@ -101,6 +109,11 @@ public class mainMenuView extends javax.swing.JFrame {
         });
 
         jButtonPrimSearch.setText("Prim");
+        jButtonPrimSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPrimSearchActionPerformed(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Ubuntu", 1, 26)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -242,7 +255,16 @@ public class mainMenuView extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonAddEdgeActionPerformed
 
     private void jButtonShowGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonShowGraphActionPerformed
-        this.graph.showGraph();
+            String graphName = "graph.png";
+            graph.showGraph();
+            try {
+                    Draw drw = new Draw();
+                    drw.drawGraph(this.graph, graphName);
+            } catch (IOException e) {
+                    e.printStackTrace();
+            }
+            
+            new DisplayImage(graphName);
     }//GEN-LAST:event_jButtonShowGraphActionPerformed
 
     private void jButtonDFSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDFSearchActionPerformed
@@ -271,6 +293,10 @@ public class mainMenuView extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "O Grafo é planar? \n"
                 + "                " + isPlanar);
     }//GEN-LAST:event_jButtonPlanaridadeActionPerformed
+
+    private void jButtonPrimSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPrimSearchActionPerformed
+        graph.prim();
+    }//GEN-LAST:event_jButtonPrimSearchActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

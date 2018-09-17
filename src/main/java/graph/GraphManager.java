@@ -21,15 +21,9 @@ public class GraphManager {
 	}
 	
 	public void run(boolean orientado){
-		String inputOption = null;
-		createGraph(orientado);
-                new mainMenuView(this.graph);
-                
-//		do{
-//                    showOptions();
-//                    inputOption = console.readString("Enter a option: ");
-//                    execute(inputOption);
-//		} while(!inputOption.equals("0"));
+            String inputOption = null;
+            createGraph(orientado);
+            mainMenuView mainMenuView = new mainMenuView(this.graph);
 	}
 	
 	private void createGraph(boolean orientado) {

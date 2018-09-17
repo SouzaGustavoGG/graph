@@ -73,15 +73,16 @@ public class Prim <V,E extends Number> {
 			acumulate += value;
 			countEdges++;
 		}
+                
 		System.err.println("AGM Prim: " + acumulate);
 		System.err.println("Total Vertices: " +  visited.size());
 		System.err.println("Total Edges: " + countEdges);
 		
 		StringBuilder edgesBuilder = new StringBuilder();
 		edgesBuilder.append("Involved Edges : {");
-		for(String edge : edges) {
-			edgesBuilder.append(edge + " ");
-		}
+                edges.forEach((edge) -> {
+                    edgesBuilder.append(edge + " ");
+                });
 		edgesBuilder.append("}");
 		System.err.println(edgesBuilder.toString());
 	}

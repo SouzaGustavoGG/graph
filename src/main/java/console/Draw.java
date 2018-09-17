@@ -40,9 +40,9 @@ public class Draw<V,E> {
 			});
 			g.add(node);
 		});
-		Graphviz.fromGraph(g).width(600).render(Format.PNG).toFile(new File(title));
-		Graphviz.releaseEngine();
                 
+		Graphviz.fromGraph(g).width(400).height(600).render(Format.PNG).toFile(new File(title));
+		Graphviz.releaseEngine();
 	}
 	
 	private boolean contains(List<String> visited, String id){
