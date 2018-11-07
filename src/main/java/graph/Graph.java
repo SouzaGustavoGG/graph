@@ -5,6 +5,7 @@ import java.util.List;
 
 import graph.search.BreadthFirstSearch;
 import graph.search.DepthFirstSearch;
+import graph.search.Floyd;
 import graph.search.Prim;
 
 public class Graph <V,E>{
@@ -178,6 +179,12 @@ public class Graph <V,E>{
 		new Prim(this).search();
 	}
 	
+	public void floyd(String startId, String stopId) {
+		Floyd floyd = new Floyd(this);
+		floyd.algorithm();
+		floyd.getBest(startId, stopId);
+	}
+	
 	public boolean contains(String id){
 		return vertices.stream().filter( v -> v.getId().equals(id)).findFirst().isPresent();
 	}
@@ -194,4 +201,12 @@ public class Graph <V,E>{
 		return oriented;
 	}
 
+	public Vertex<V,E> getVertexById(String id){
+		for(Vertex<V,E> v : vertices){
+			if(v.getId().equals(id)){
+				return v; 
+			}
+		}
+		return null;
+	}
 }

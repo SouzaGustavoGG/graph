@@ -44,6 +44,7 @@ public class GraphManager {
                     .append("Search DFS [8]\n")
                     .append("Planar [9]\n")
                     .append("Prim [10)\n")
+                    .append("Floyd [11]\n")
                     .append("==============")
                     .toString());
 	}
@@ -62,6 +63,7 @@ public class GraphManager {
                             case "8": dfs(); break;
                             case "9": planar(); break;
                             case "10": prim(); break;
+                            case "11": floyd(); break;
                             case "0": break;
                     }
             } catch (IllegalArgumentException e){
@@ -135,6 +137,12 @@ public class GraphManager {
 	
 	private void prim() {
 		graph.prim();
+	}
+	
+	private void floyd(){
+		String startId = console.readString("Start Vertex: ");
+		String stopId = console.readString("Stop Vertex: ");
+		graph.floyd(startId, stopId);
 	}
 	
 	private void showGraph() {

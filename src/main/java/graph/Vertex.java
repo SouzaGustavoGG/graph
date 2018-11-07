@@ -43,6 +43,15 @@ public class Vertex <V,E> implements Cloneable{
 	public void setVisited(boolean visited) {
 		this.visited = visited;
 	}
+	
+	public E getEdgeByVertexId(String id){
+		for(Edge<V,E> edge : edges){
+			if(edge.getVertex().getId().equals(id)){
+				return edge.getValue(); 
+			}
+		}
+		return null;
+	}
 
 	public List<Vertex<V,E>> getNeighbors() {
 		List<Vertex<V,E>> neighbors = new ArrayList<>();
