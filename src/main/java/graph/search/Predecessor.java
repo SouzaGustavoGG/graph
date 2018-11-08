@@ -8,6 +8,11 @@ public class Predecessor<T,N> {
 	private Vertex<T,N> lastVertex;
 	private N distance;
 	
+	public Predecessor(N distance,Vertex<T,N> vertex){
+		this.distance = distance;
+		this.vertex = vertex;
+	}
+	
 	public Predecessor(N distance,Vertex<T,N> vertex, Vertex<T,N> lastVertex){
 		this.distance = distance;
 		this.vertex = vertex;

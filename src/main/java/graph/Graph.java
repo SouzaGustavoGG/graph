@@ -5,6 +5,7 @@ import java.util.List;
 
 import graph.search.BreadthFirstSearch;
 import graph.search.DepthFirstSearch;
+import graph.search.Djikstra;
 import graph.search.Floyd;
 import graph.search.Prim;
 
@@ -183,6 +184,11 @@ public class Graph <V,E>{
 		Floyd floyd = new Floyd(this);
 		floyd.algorithm();
 		floyd.getBest(startId, stopId);
+	}
+	
+	public void djikstra(String startId, String stopId) {
+		Djikstra djikstra = new Djikstra(this);
+		djikstra.algorithm(startId, stopId);
 	}
 	
 	public boolean contains(String id){
