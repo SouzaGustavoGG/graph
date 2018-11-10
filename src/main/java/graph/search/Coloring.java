@@ -2,6 +2,7 @@
 package graph.search;
 
 import static java.lang.Integer.MAX_VALUE;
+import java.util.ArrayList;
 
 public class Coloring {
     
@@ -53,12 +54,18 @@ public class Coloring {
     }
     
     public void display() {
-        System.out.print("\nColors needed: " + colorsUsed);
-        System.out.print("\nColors : ");
-        for (int i = 0; i < V; i++)
-            System.out.print(color[i] +" ");
+        String cores[] = new String[] {
+            "Vermelho", "Azul", "Branco", 
+            "Preto", "Amarelho", "Verde", 
+            "Roxo", "Rosa", "Marrom", "Laranja"
+        };
         
-        System.out.println();
+        String result = "";
+        for (int i = 0; i < V; i++) {
+            result = result.concat("Vértice ( " + (i +1) + ") -> Cor :" + cores[i] + "\n");
+        }
+        
+        System.out.println(result);
     }
     
 }
