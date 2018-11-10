@@ -8,6 +8,7 @@ import graph.search.DepthFirstSearch;
 import graph.search.Djikstra;
 import graph.search.Floyd;
 import graph.search.Prim;
+import graph.search.Coloring;
 
 public class Graph <V,E>{
 	
@@ -190,6 +191,11 @@ public class Graph <V,E>{
 		Djikstra djikstra = new Djikstra(this);
 		djikstra.algorithm(startId, stopId);
 	}
+        
+        public void coloring(int numVertices, int numColors, int[][] matrix) {
+            Coloring color = new Coloring(numVertices, numColors, matrix);
+            color.graphColor();
+        }
 	
 	public boolean contains(String id){
 		return vertices.stream().filter( v -> v.getId().equals(id)).findFirst().isPresent();

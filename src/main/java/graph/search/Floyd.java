@@ -15,7 +15,8 @@ public class Floyd <V,E  extends Number> {
 	public Floyd(Graph<V, E> g){
 		int size = g.getVertices().size();
 		if(!g.isOriented())
-			throw new IllegalArgumentException("Graph must be oriented");
+                    throw new IllegalArgumentException("Graph must be oriented");
+                
 		matrixD = new double[size][size];
 		setMatrixP(new int[size][size]);
 		vertices = new String[size];
