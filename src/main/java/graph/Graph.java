@@ -183,8 +183,7 @@ public class Graph <V,E>{
 	
 	public void floyd(String startId, String stopId) {
 		Floyd floyd = new Floyd(this);
-		floyd.algorithm();
-		floyd.getBest(startId, stopId);
+		floyd.algorithm(startId, stopId);
 	}
 	
 	public void djikstra(String startId, String stopId) {
