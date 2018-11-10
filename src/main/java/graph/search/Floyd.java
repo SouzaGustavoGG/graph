@@ -37,13 +37,13 @@ public class Floyd <V,E  extends Number> {
             for(int i=0; i< matrixD.length; i++){
                     for(int j=0; j < matrixD.length; j++){
                             if(g.adjacent(vertices[i], vertices[j])){
-                                    matrixD[i][j] = (double) g.getVertexById(vertices[i]).getEdgeByVertexId(vertices[j]);
+                                    matrixD[i][j] = g.getVertexById(vertices[i]).getEdgeByVertexId(vertices[j]).doubleValue();
                             }else if( i == j){
                                     matrixD[i][j] = 0.0;
                             } else {
-                                    matrixD[i][j] = Double.MAX_VALUE;
+                                    matrixD[i][j] = 999.0;
                             }
-                            System.out.println(matrixD[i][j] + " ");
+                            System.out.print(matrixD[i][j] + " ");
                     }
                     System.out.println();
             }
@@ -61,7 +61,7 @@ public class Floyd <V,E  extends Number> {
             }
 	}
 	
-	public void algorithm(){
+	public void algorithm(String startId, String stopId){
             for(int k=0; k < vertices.length; k++){			
                 for(int i=0; i< matrixD.length; i++){
                     for(int j=0; j < matrixD.length; j++){
@@ -75,9 +75,17 @@ public class Floyd <V,E  extends Number> {
                     }
                 }
             }
+            getBest(startId, stopId);
 	}
 	
-	public void getBest(String startId, String stopId){
+	private void getBest(String startId, String stopId){
+		System.out.println();
+        for(int i=0; i< matrixP.length; i++){
+            for(int j=0; j < matrixP.length; j++){
+            	System.out.print(matrixP[i][j] + " ");
+            }
+            System.out.println();
+        }
             int start = -1;
             int stop = -1;
             int count = 0;
@@ -92,9 +100,11 @@ public class Floyd <V,E  extends Number> {
 
             List<String> predecessors = new ArrayList<>();
             while(stop != start){
-                predecessors.add(0, vertices[stop]);
+            	predecessors.add(0, vertices[stop]);
                 stop = matrixP[start][stop];
             }
+            if(predecessors.size() > 0)
+            	predecessors.add(0, vertices[start]);
             System.out.println("Best Way: " + predecessors);
 	}
 
@@ -112,6 +122,40 @@ public class Floyd <V,E  extends Number> {
 
 	public void setMatrixP(int[][] matrixP) {
             this.matrixP = matrixP;
-        }
+    }
+	
+	public static void main(String[] args){
+		Graph<String,Integer> g = new Graph<>(true);
+		g.addVertex("1", "1");
+		g.addVertex("2", "1");
+		g.addVertex("3", "1");
+		g.addVertex("4", "1");
+		g.addVertex("5", "1");
+		
+		g.addEdge("12", 2, "1", "2");
+		g.addEdge("21", 2, "2", "1");
+		
+		g.addEdge("13", 4, "1", "3");
+		g.addEdge("31", 4, "3", "1");
+		
+		g.addEdge("23", 3, "2", "3");
+		g.addEdge("32", 3, "3", "2");
+		
+		g.addEdge("24", 4, "2", "4");
+		g.addEdge("42", 4, "4", "2");
+		
+		g.addEdge("34", 5, "3", "4");
+		g.addEdge("43", 5, "4", "3");
+		
+		g.addEdge("35", 3, "3", "5");
+		g.addEdge("53", 3, "5", "3");
+		
+		g.addEdge("45", 6, "4", "5");
+		g.addEdge("54", 6, "5", "4");
+		
+		Floyd floyd = new Floyd(g);
+		floyd.algorithm("1", "5");
+		
+	}
 
 }
