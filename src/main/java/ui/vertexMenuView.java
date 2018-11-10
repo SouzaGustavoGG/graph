@@ -190,16 +190,36 @@ public class vertexMenuView extends javax.swing.JFrame {
 
     private void jButtonAddVertexActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddVertexActionPerformed
         String id = this.jTextFieldNewId.getText();
-        int value;
-        try {
-            value = Integer.parseInt(this.jTextFieldNewValue.getText());
-        } catch(NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "O valor do vértice precisa ser um int!");
+        if(id.equals("")) {
+            JOptionPane.showMessageDialog(null, "ID não pode ser vazio!");
             return;
         }
-        this.graph.addVertex(id, value);
-        this.dispose();
-        new mainMenuView(this.graph);
+        
+        String value = this.jTextFieldNewValue.getText();
+        int vertexValue;
+        
+        if(value.equals("")) {
+            JOptionPane.showMessageDialog(null, "Valor zero será utilizado.");
+            vertexValue = 0;
+        } else {
+           try {
+                vertexValue = Integer.parseInt(this.jTextFieldNewValue.getText());
+            } catch(NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "O valor do vértice precisa ser um int!");
+                return;
+            } 
+        }
+                
+        try {
+            this.graph.addVertex(id, vertexValue);
+        } catch(Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+            return;
+        } 
+        
+        JOptionPane.showMessageDialog(null, "Vértice adicionado com sucesso.");
+        this.jTextFieldNewId.setText("");
+        this.jTextFieldNewValue.setText("");
     }//GEN-LAST:event_jButtonAddVertexActionPerformed
 
     private void jButtonRemoveVertexActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoveVertexActionPerformed
@@ -209,9 +229,8 @@ public class vertexMenuView extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "O vértice de ID: " + id + " não existe!");
             return;
         }
-        this.dispose();
-        new mainMenuView(this.graph);
         
+        JOptionPane.showMessageDialog(null, "Vértice removido com sucesso.");    
     }//GEN-LAST:event_jButtonRemoveVertexActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

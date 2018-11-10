@@ -354,6 +354,7 @@ public class mainMenuView extends javax.swing.JFrame {
     private void jButtonColorsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonColorsActionPerformed
         Scanner scan = new Scanner(System.in);
         System.out.println("Enter number of verticesz\n");
+        this.graph.getVertices().forEach(kek -> System.out.println(kek.toString()));
         int V = scan.nextInt();
  
         /** get graph **/

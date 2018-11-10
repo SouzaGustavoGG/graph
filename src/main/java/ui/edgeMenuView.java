@@ -222,15 +222,32 @@ public class edgeMenuView extends javax.swing.JFrame {
         String vertexId1 = this.jTextFieldVerticeOrigemId.getText();
         String vertexId2 = this.jTextFieldVerticeDestinoId.getText();    
         int value;
+        
+        if(id.equals("") || vertexId1.equals("") || vertexId2.equals("")) {
+            JOptionPane.showMessageDialog(null, "Por favor preencha todos os campos corretamente.");
+            return;
+        }
+        
         try {
             value = Integer.parseInt(this.jTextFieldNewValue.getText());
         } catch(NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "O valor do arco precisa ser um int!");
             return;
         }
-        graph.addEdge(id, value, vertexId1, vertexId2);
-        this.dispose();
-        new mainMenuView(this.graph);
+        
+        try {
+            graph.addEdge(id, value, vertexId1, vertexId2);
+        } catch(Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+            return;
+        }
+        
+        this.jTextFieldNewId.setText("");
+        this.jTextFieldVerticeOrigemId.setText("");
+        this.jTextFieldVerticeDestinoId.setText("");
+        this.jTextFieldNewValue.setText("");
+        
+        JOptionPane.showMessageDialog(null, "Arco inserido com sucesso.");
     }//GEN-LAST:event_jButtonAddEdgeActionPerformed
 
     private void jTextFieldOrigemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldOrigemActionPerformed
@@ -249,8 +266,10 @@ public class edgeMenuView extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "O vértice de origem: " + id1 + " ou destino: " + id2 + " não existe!");
             return;
         }
-        this.dispose();
-        new mainMenuView(this.graph);
+        
+        this.jTextFieldOrigem.setText("");
+        this.jTextFieldDestino.setText("");
+        JOptionPane.showMessageDialog(null, "Vértice removido com sucesso.");
     }//GEN-LAST:event_jButtonRemoveEdgeActionPerformed
 
     private void jButtonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairActionPerformed
