@@ -106,7 +106,7 @@ public class Djikstra<V,E  extends Number>{
 	
 	private void initializeVertices(Graph<V,E> g){
 		for(int i=0; i< g.getVertices().size(); i++){
-			openedVertices.add(g.getVertices().get(i).getId());;
+			openedVertices.add(g.getVertices().get(i).getId());
 		}
 	}
 

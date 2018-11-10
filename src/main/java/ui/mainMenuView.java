@@ -8,6 +8,7 @@ package ui;
 import console.Draw;
 import graph.Graph;
 import java.awt.Dimension;
+import java.awt.HeadlessException;
 import java.awt.Toolkit;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -348,30 +349,72 @@ public class mainMenuView extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonPrimSearchActionPerformed
 
     private void jButtonDijkstraSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDijkstraSearchActionPerformed
-        // TODO add your handling code here:
+        String startId = JOptionPane.showInputDialog("Insira o ID do vértice de início");
+        String stopId = JOptionPane.showInputDialog("Insira o ID do vértice de término");
+        
+        if(startId.equals("") || stopId.equals("")) {
+            JOptionPane.showMessageDialog(null, "IDs de início e fim são obrigatórios!");
+        } else {
+            try {
+                this.graph.djikstra(startId, stopId);
+            }
+            catch(Exception e) {
+                JOptionPane.showMessageDialog(null, e.getMessage());
+            }
+        }
     }//GEN-LAST:event_jButtonDijkstraSearchActionPerformed
 
     private void jButtonColorsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonColorsActionPerformed
         Scanner scan = new Scanner(System.in);
-        System.out.println("Enter number of verticesz\n");
-        this.graph.getVertices().forEach(kek -> System.out.println(kek.toString()));
-        int V = scan.nextInt();
- 
-        /** get graph **/
-        System.out.println("\nEnter matrix\n");
-        int[][] graph = new int[V][V];
-        for (int i = 0; i < V; i++)
-            for (int j = 0; j < V; j++)
-                graph[i][j] = scan.nextInt();
- 
-        System.out.println("\nEnter number of colors");
-        int c = scan.nextInt();
+        int intVal;
         
-        this.graph.coloring(V, c, graph);
+        String numVertexes = JOptionPane.showInputDialog("Quantidade de vértices da matriz");
+        try {
+            intVal = Integer.parseInt(numVertexes);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Valor deve int");
+            return;
+        }
+
+        
+        int V = intVal;
+ 
+        int[][] matrix = new int[V][V];
+        for (int i = 0; i < V; i++)
+            for (int j = 0; j < V; j++) {
+                String value = JOptionPane.showInputDialog("Insira o valor da posição " + "A" + i + j);
+                try {
+                    intVal = Integer.parseInt(value);
+                    if(intVal != 0 && intVal != 1) {
+                        j--;
+                        JOptionPane.showMessageDialog(null, "Valor deve ser 1 ou 0");
+                        continue;
+                    }
+                    
+                    matrix[i][j] = intVal;
+                } catch (HeadlessException | NumberFormatException e) {
+                    j--;
+                    JOptionPane.showMessageDialog(null, "Valor deve int");
+                }
+            }
+        
+        this.graph.coloring(V, matrix);
     }//GEN-LAST:event_jButtonColorsActionPerformed
 
     private void jButtonFloydSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFloydSearchActionPerformed
-        // TODO add your handling code here:
+        String startId = JOptionPane.showInputDialog("Insira o ID do vértice de início");
+        String stopId = JOptionPane.showInputDialog("Insira o ID do vértice de término");
+        
+        if(startId.equals("") || stopId.equals("")) {
+            JOptionPane.showMessageDialog(null, "IDs de início e fim são obrigatórios!");
+        } else {
+            try {
+                this.graph.floyd(startId, stopId);
+            }
+            catch(Exception e) {
+                JOptionPane.showMessageDialog(null, e.getMessage());
+            }
+        }
     }//GEN-LAST:event_jButtonFloydSearchActionPerformed
 
 

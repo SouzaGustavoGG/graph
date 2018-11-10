@@ -192,8 +192,8 @@ public class Graph <V,E>{
 		djikstra.algorithm(startId, stopId);
 	}
         
-        public void coloring(int numVertices, int numColors, int[][] matrix) {
-            Coloring color = new Coloring(numVertices, numColors, matrix);
+        public void coloring(int numVertices, int[][] matrix) {
+            Coloring color = new Coloring(numVertices, matrix);
             color.graphColor();
         }
 	

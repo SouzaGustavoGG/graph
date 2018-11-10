@@ -1,15 +1,19 @@
 
 package graph.search;
 
+import static java.lang.Integer.MAX_VALUE;
+
 public class Coloring {
     
-    private final int V, numOfColors;
+    private final int numOfColors = MAX_VALUE;
+    private final int V;
     private final int[] color; 
     private final int[][] graph;
+    private int colorsUsed;
     
-    public Coloring(int numVertices, int numColors, int [][] matrix) {
+    public Coloring(int numVertices, int [][] matrix) {
+        this.colorsUsed = 0;
         this.V = numVertices;
-        this.numOfColors = numColors;
         this.color = new int[this.V];
         this.graph = matrix;
     }
@@ -36,7 +40,7 @@ public class Coloring {
                 solve(v + 1);
                 color[v] = 0;
             }
-        }    
+        }
     }
     
     public boolean isPossible(int v, int c) { 
@@ -49,6 +53,7 @@ public class Coloring {
     }
     
     public void display() {
+        System.out.print("\nColors needed: " + colorsUsed);
         System.out.print("\nColors : ");
         for (int i = 0; i < V; i++)
             System.out.print(color[i] +" ");
