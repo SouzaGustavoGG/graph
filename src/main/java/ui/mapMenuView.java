@@ -199,14 +199,13 @@ public class mapMenuView extends javax.swing.JFrame {
         }
         
         String name2 = JOptionPane.showInputDialog("Nome da segunda coordenada");
-        Coordinate cor2 = this.map.getCordinateByName(name2);
-        
+        Coordinate cor2 = this.map.getCordinateByName(name2);        
         if(cor2 == null) {
             JOptionPane.showMessageDialog(null, "Cordenada " + name2 + " não existe.");
             return;
         }
         
-        String result = this.map.calculateDistance(cor1, cor2);
+        String result = this.map.calculateDistance(name1, name2);
         JOptionPane.showMessageDialog(null, "Distância igual a: " + result);
     }//GEN-LAST:event_jButtonDiffActionPerformed
 

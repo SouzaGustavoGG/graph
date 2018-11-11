@@ -3,6 +3,7 @@ package graph;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import org.jfree.data.xy.XYDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
@@ -20,8 +21,7 @@ public class Map {
             Coordinate tmp = this.getCordinateByName(cor.getName());
             if(tmp == null) { // Check to see if this name has been used already
                 this.coordinates.add(cor);
-            }           
-            
+            }
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -31,7 +31,10 @@ public class Map {
         return this.coordinates;
     }
     
-    public String calculateDistance(Coordinate cor1, Coordinate cor2) {
+    public String calculateDistance(String corName1, String corName2) {
+        Coordinate cor1 = this.getCordinateByName(corName1);
+        Coordinate cor2 = this.getCordinateByName(corName2);
+        
         int diff_x = Math.abs(cor1.getPosX() - cor2.getPosX());
         int diff_y = Math.abs(cor1.getPosY() - cor2.getPosY());
         
