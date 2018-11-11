@@ -39,8 +39,7 @@ public class Map {
             dataset.addSeries(series);
         });
         
-        
-               
+
         return dataset;
     }
     

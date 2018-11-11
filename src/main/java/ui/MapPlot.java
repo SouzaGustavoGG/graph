@@ -2,7 +2,6 @@ package ui;
 
 import java.awt.Color;
 import javax.swing.JFrame;
-import javax.swing.WindowConstants;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -18,11 +17,10 @@ public class MapPlot extends JFrame {
     JFreeChart chart = ChartFactory.createScatterPlot(
         "Cidades", 
         "X-Axis", 
-        "Y-Axis", 
+        "Y-Axis",
         dataset
     );
 
-    
     //Changes background color
     XYPlot plot = (XYPlot)chart.getPlot();
     plot.setBackgroundPaint(new Color(255,228,196));    
