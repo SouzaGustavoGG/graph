@@ -22,7 +22,7 @@ import javax.swing.JOptionPane;
  */
 public class mainMenuView extends javax.swing.JFrame {
     
-    private Graph graph;
+    private final Graph graph;
     private Draw<String,Integer> draw;
     /**
      * Creates new form mainMenuView
@@ -354,7 +354,10 @@ public class mainMenuView extends javax.swing.JFrame {
         
         if(startId.equals("") || stopId.equals("")) {
             JOptionPane.showMessageDialog(null, "IDs de início e fim são obrigatórios!");
-        } else {
+        } else if(!this.graph.contains(startId) || !this.graph.contains(stopId)) {
+            JOptionPane.showMessageDialog(null, "ID de início ou fim não existem!");
+        } 
+        else {
             try {
                 this.graph.djikstra(startId, stopId);
             }
@@ -372,7 +375,7 @@ public class mainMenuView extends javax.swing.JFrame {
         try {
             intVal = Integer.parseInt(numVertexes);
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Valor deve int");
+            JOptionPane.showMessageDialog(null, "Valor deve ser int");
             return;
         }
 
@@ -394,7 +397,7 @@ public class mainMenuView extends javax.swing.JFrame {
                     matrix[i][j] = intVal;
                 } catch (HeadlessException | NumberFormatException e) {
                     j--;
-                    JOptionPane.showMessageDialog(null, "Valor deve int");
+                    JOptionPane.showMessageDialog(null, "Valor deve ser int");
                 }
             }
         
@@ -407,7 +410,9 @@ public class mainMenuView extends javax.swing.JFrame {
         
         if(startId.equals("") || stopId.equals("")) {
             JOptionPane.showMessageDialog(null, "IDs de início e fim são obrigatórios!");
-        } else {
+        } else if(!this.graph.contains(startId) || !this.graph.contains(stopId)) {
+            JOptionPane.showMessageDialog(null, "ID de início ou fim não existem!");
+        } else { 
             try {
                 this.graph.floyd(startId, stopId);
             }

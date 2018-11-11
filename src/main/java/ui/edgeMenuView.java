@@ -18,9 +18,6 @@ public class edgeMenuView extends javax.swing.JFrame {
     
     Graph graph;
 
-    /**
-     * Creates new form edgeMenuView
-     */
     public edgeMenuView(Graph graph) {
         this.graph = graph;
         initComponents();

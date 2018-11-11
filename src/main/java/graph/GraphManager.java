@@ -12,11 +12,11 @@ import ui.mainMenuView;
 public class GraphManager {
 	
 	private Graph<String,Integer> graph;
-	private Draw<String,Integer> draw;
+	private final Draw<String,Integer> draw;
 	private static ConsoleScanner console;
 	
 	public GraphManager(){
-		this.draw = new Draw<String, Integer>();
+		this.draw = new Draw<>();
 		console = new ConsoleScanner();
 	}
 	
@@ -27,7 +27,7 @@ public class GraphManager {
 	}
 	
 	private void createGraph(boolean orientado) {
-		this.graph = new Graph<String,Integer>(orientado);
+		this.graph = new Graph<>(orientado);
 		System.out.println(graph.isOriented());
 	}
 	
@@ -108,9 +108,9 @@ public class GraphManager {
 	
 	private void bfs() {
 		List<String> finalIds = new ArrayList<>();
-		String finalId = null;
+		String finalId;
+		Boolean add;
 		String startid = console.readString("Start Vertex: ");
-		Boolean add = false;
 		do {
 			finalId = console.readString("Final Vertex: ");
 			finalIds.add(finalId);
@@ -121,9 +121,9 @@ public class GraphManager {
 	
 	private void dfs() {
 		List<String> finalIds = new ArrayList<>();
-		String finalId = null;
+		String finalId;
 		String startid = console.readString("Start Vertex: ");
-		Boolean add = false;
+		Boolean add;
 		do {
 			finalId = console.readString("Final Vertex: ");
 			finalIds.add(finalId);
