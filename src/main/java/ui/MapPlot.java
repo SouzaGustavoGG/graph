@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ui;
 
 import java.awt.Color;
@@ -14,13 +9,7 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.XYPlot;
 import org.jfree.data.xy.XYDataset;
 
-/**
- *
- * @author geevb
- */
 public class MapPlot extends JFrame {
-    
-    private static final long serialVersionUID = 6294689542092367723L;
 
   public MapPlot(String title, XYDataset dataset) {
     super(title);
@@ -28,7 +17,10 @@ public class MapPlot extends JFrame {
     // Create chart
     JFreeChart chart = ChartFactory.createScatterPlot(
         "Cidades", 
-        "X-Axis", "Y-Axis", dataset);
+        "X-Axis", 
+        "Y-Axis", 
+        dataset
+    );
 
     
     //Changes background color
@@ -37,10 +29,9 @@ public class MapPlot extends JFrame {
    
     // Create Panel
     ChartPanel panel = new ChartPanel(chart);
-    setContentPane(panel);
+    this.setContentPane(panel);
     this.setSize(800, 400);
     this.setLocationRelativeTo(null);
-    this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     this.setVisible(true);
   }
 }

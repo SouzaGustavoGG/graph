@@ -9,10 +9,10 @@ import org.jfree.data.xy.XYSeriesCollection;
 
 public class Map {
    
-    private List<Coordinate> coordinates;
+    private final List<Coordinate> coordinates;
     
     public Map() {
-        this.coordinates = new ArrayList<Coordinate>();
+        this.coordinates = new ArrayList<>();
     }
     
     public void addCoordinate(Coordinate cor) {

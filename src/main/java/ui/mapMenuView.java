@@ -150,7 +150,7 @@ public class mapMenuView extends javax.swing.JFrame {
 
     private void jButtonSearchAStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSearchAStartActionPerformed
         XYDataset dataset = this.map.createDataset();
-        new MapPlot("Cidades", dataset);
+        new MapPlot("Coordenadas", dataset);
     }//GEN-LAST:event_jButtonSearchAStartActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
