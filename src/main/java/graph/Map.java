@@ -29,16 +29,18 @@ public class Map {
        
     public XYDataset createDataset() {
         XYSeriesCollection dataset = new XYSeriesCollection();
-        XYSeries series = new XYSeries("Cidades");
+        
 
         List<Coordinate> coordinates = this.getCoordinates();
         
         coordinates.forEach((coordinate) -> {
+            XYSeries series = new XYSeries(coordinate.getName());
             series.add(coordinate.getPosX(), coordinate.getPosY());
+            dataset.addSeries(series);
         });
         
         
-        dataset.addSeries(series);        
+               
         return dataset;
     }
     

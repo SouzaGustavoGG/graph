@@ -32,6 +32,7 @@ public class mapMenuView extends javax.swing.JFrame {
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
         this.setVisible(true);
+       
     }
 
     /**
@@ -124,17 +125,41 @@ public class mapMenuView extends javax.swing.JFrame {
     private void jButtonAddCoordinateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddCoordinateActionPerformed
         String x = JOptionPane.showInputDialog("Insira o valor da coordenada X");
         String y = JOptionPane.showInputDialog("Insira o valor da coordenada Y");
+        String nome = JOptionPane.showInputDialog("Insira o nome da Coordenada");
         
         if(x.equals("") || y.equals("")) {
             JOptionPane.showMessageDialog(null, "X e Y não podem ser nulos");
             return;
         }
         
+        if(true) {
+            this.map.addCoordinate(new Coordinate(950 , 231, "A"));
+            this.map.addCoordinate(new Coordinate(607 , 486, "B"));
+            this.map.addCoordinate(new Coordinate(891 , 762, "C"));
+            this.map.addCoordinate(new Coordinate(456 , 19,  "D"));
+            this.map.addCoordinate(new Coordinate(821 , 445, "E"));
+            this.map.addCoordinate(new Coordinate(615 , 792, "F"));
+            this.map.addCoordinate(new Coordinate(922 , 738, "G"));
+            this.map.addCoordinate(new Coordinate(176 , 406, "H"));
+            this.map.addCoordinate(new Coordinate(935 , 917, "I"));
+            this.map.addCoordinate(new Coordinate(410 , 894, "J"));
+            this.map.addCoordinate(new Coordinate(58 , 353,  "K"));
+            this.map.addCoordinate(new Coordinate(813 , 10,  "L"));
+            this.map.addCoordinate(new Coordinate(139 , 203, "M"));
+            this.map.addCoordinate(new Coordinate(199 , 604, "N"));
+            this.map.addCoordinate(new Coordinate(272 , 199, "O"));
+            this.map.addCoordinate(new Coordinate(15 , 747,  "P"));
+            this.map.addCoordinate(new Coordinate(445 , 932, "Q"));
+            this.map.addCoordinate(new Coordinate(466 , 419, "R"));
+            this.map.addCoordinate(new Coordinate(846 , 525, "S"));
+            this.map.addCoordinate(new Coordinate(203 , 672, "T")); 
+        }
+        
         try {
             int int_x = Integer.parseInt(x);
             int int_y = Integer.parseInt(y);
             
-            this.map.addCoordinate(new Coordinate(int_x, int_y));
+            this.map.addCoordinate(new Coordinate(int_x, int_y, nome));
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
             return;
@@ -145,7 +170,7 @@ public class mapMenuView extends javax.swing.JFrame {
 
     private void jButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBackActionPerformed
         this.dispose();
-        new mainMenuView(this.graph);
+        new mainMenuView(this.graph, this.map);
     }//GEN-LAST:event_jButtonBackActionPerformed
 
     private void jButtonSearchAStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSearchAStartActionPerformed

@@ -24,12 +24,23 @@ import javax.swing.JOptionPane;
 public class mainMenuView extends javax.swing.JFrame {
     
     private final Graph graph;
+    private final Map map;
     private Draw<String,Integer> draw;
     /**
      * Creates new form mainMenuView
      */
     public mainMenuView(Graph graph) {
         this.graph = graph;
+        this.map = null;
+        initComponents();
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
+        this.setVisible(true);
+    }
+    
+    public mainMenuView(Graph graph, Map map) {
+        this.graph = graph;
+        this.map = map;
         initComponents();
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
