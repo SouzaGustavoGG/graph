@@ -3,7 +3,7 @@ package graph;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Vertex <V,E> implements Cloneable{
+public class Vertex <V,E> implements Cloneable {
 	
 	private String id;
 	private V value;
