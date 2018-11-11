@@ -17,7 +17,11 @@ public class Map {
     
     public void addCoordinate(Coordinate cor) {
         try {
-            this.coordinates.add(cor);
+            Coordinate tmp = this.getCordinateByName(cor.getName());
+            if(tmp == null) { // Check to see if this name has been used already
+                this.coordinates.add(cor);
+            }           
+            
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
