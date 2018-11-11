@@ -49,6 +49,7 @@ public class mapMenuView extends javax.swing.JFrame {
         jButtonRemoveCoordinate = new javax.swing.JButton();
         jButtonSearchAStart = new javax.swing.JButton();
         jButtonBack = new javax.swing.JButton();
+        jButtonDiff = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -66,7 +67,7 @@ public class mapMenuView extends javax.swing.JFrame {
 
         jButtonRemoveCoordinate.setText("Remover");
 
-        jButtonSearchAStart.setText("Buscar A *");
+        jButtonSearchAStart.setText("Mostrar Coordenadas");
         jButtonSearchAStart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonSearchAStartActionPerformed(evt);
@@ -80,6 +81,13 @@ public class mapMenuView extends javax.swing.JFrame {
             }
         });
 
+        jButtonDiff.setText("Distância");
+        jButtonDiff.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDiffActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -88,20 +96,21 @@ public class mapMenuView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabelTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 676, Short.MAX_VALUE)
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(65, 65, 65)
-                .addComponent(jButtonAddCoordinate, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonRemoveCoordinate, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(63, 63, 63))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonSearchAStart, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(247, 247, 247))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButtonBack, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButtonBack, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(65, 65, 65)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButtonAddCoordinate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonSearchAStart, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButtonRemoveCoordinate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonDiff, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
+                .addGap(63, 63, 63))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -112,9 +121,11 @@ public class mapMenuView extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonAddCoordinate, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonRemoveCoordinate, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 151, Short.MAX_VALUE)
-                .addComponent(jButtonSearchAStart, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonSearchAStart, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonDiff, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(86, 86, 86)
                 .addComponent(jButtonBack)
                 .addContainerGap())
         );
@@ -178,9 +189,31 @@ public class mapMenuView extends javax.swing.JFrame {
         new MapPlot("Coordenadas", dataset);
     }//GEN-LAST:event_jButtonSearchAStartActionPerformed
 
+    private void jButtonDiffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDiffActionPerformed
+        String name1 = JOptionPane.showInputDialog("Nome da primeira coordenada");
+        Coordinate cor1 = this.map.getCordinateByName(name1);
+        
+        if(cor1 == null) {
+            JOptionPane.showMessageDialog(null, "Cordenada " + name1 + " não existe.");
+            return;
+        }
+        
+        String name2 = JOptionPane.showInputDialog("Nome da segunda coordenada");
+        Coordinate cor2 = this.map.getCordinateByName(name2);
+        
+        if(cor2 == null) {
+            JOptionPane.showMessageDialog(null, "Cordenada " + name2 + " não existe.");
+            return;
+        }
+        
+        String result = this.map.calculateDistance(cor1, cor2);
+        JOptionPane.showMessageDialog(null, "Distância igual a: " + result);
+    }//GEN-LAST:event_jButtonDiffActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAddCoordinate;
     private javax.swing.JButton jButtonBack;
+    private javax.swing.JButton jButtonDiff;
     private javax.swing.JButton jButtonRemoveCoordinate;
     private javax.swing.JButton jButtonSearchAStart;
     private javax.swing.JLabel jLabelTitle;
