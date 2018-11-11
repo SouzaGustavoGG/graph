@@ -2,6 +2,7 @@
 package graph.search;
 
 import static java.lang.Integer.MAX_VALUE;
+import javax.swing.JOptionPane;
 
 public class Coloring {
     
@@ -18,14 +19,11 @@ public class Coloring {
         this.graph = matrix;
     }
  
-    /** Function to assign color **/
     public void graphColor() {
         try {
             solve(0);
-            System.out.println("No solution");
         }
         catch (Exception e) {
-            System.out.println("\nSolution exists ");
             display();
         }
     }
@@ -59,12 +57,12 @@ public class Coloring {
             "Roxo", "Rosa", "Marrom", "Laranja"
         };
         
-        String result = "";
+        String result = "Solução: \n\n";
         for (int i = 0; i < V; i++) {
-            result = result.concat("Vértice ( " + (i +1) + ") -> Cor :" + cores[i] + "\n");
+            result = result.concat("Vértice ( " + (i +1) + ") -> Cor: " + cores[i] + "\n");
         }
         
-        System.out.println(result);
+        JOptionPane.showMessageDialog(null, result);
     }
     
 }

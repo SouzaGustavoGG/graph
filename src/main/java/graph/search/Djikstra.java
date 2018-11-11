@@ -145,29 +145,29 @@ public class Djikstra<V,E  extends Number>{
 		this.openedVertices = openedVertices;
 	}
 	
-	public static void main(String[] args){
-		Graph<String,Integer> g = new Graph<>(true);
-		g.addVertex("s", "1");
-		g.addVertex("u", "1");
-		g.addVertex("v", "1");
-		g.addVertex("x", "1");
-		g.addVertex("y", "1");
-		
-		g.addEdge("su", 10, "s", "u");
-		g.addEdge("sx", 5, "s", "x");		
-		g.addEdge("ux", 2, "u", "x");
-		g.addEdge("xu", 3, "x", "u");		
-		g.addEdge("uv", 1, "u", "v");		
-		g.addEdge("xv", 9, "x", "v");
-		g.addEdge("xy", 2, "x", "y");	
-		g.addEdge("vy", 6, "v", "y");
-		g.addEdge("yv", 4, "y", "v");
-		g.addEdge("ys", 7, "y", "s");
-		
-		Djikstra djikstra = new Djikstra(g);
-		djikstra.algorithm("s", "v");
-		
-	}
+//	public static void main(String[] args){
+//		Graph<String,Integer> g = new Graph<>(true);
+//		g.addVertex("s", "1");
+//		g.addVertex("u", "1");
+//		g.addVertex("v", "1");
+//		g.addVertex("x", "1");
+//		g.addVertex("y", "1");
+//		
+//		g.addEdge("su", 10, "s", "u");
+//		g.addEdge("sx", 5, "s", "x");		
+//		g.addEdge("ux", 2, "u", "x");
+//		g.addEdge("xu", 3, "x", "u");		
+//		g.addEdge("uv", 1, "u", "v");		
+//		g.addEdge("xv", 9, "x", "v");
+//		g.addEdge("xy", 2, "x", "y");	
+//		g.addEdge("vy", 6, "v", "y");
+//		g.addEdge("yv", 4, "y", "v");
+//		g.addEdge("ys", 7, "y", "s");
+//		
+//		Djikstra djikstra = new Djikstra(g);
+//		djikstra.algorithm("s", "v");
+//		
+//	}
 
 
 }

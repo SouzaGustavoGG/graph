@@ -124,38 +124,38 @@ public class Floyd <V,E  extends Number> {
             this.matrixP = matrixP;
     }
 	
-	public static void main(String[] args){
-		Graph<String,Integer> g = new Graph<>(true);
-		g.addVertex("1", "1");
-		g.addVertex("2", "1");
-		g.addVertex("3", "1");
-		g.addVertex("4", "1");
-		g.addVertex("5", "1");
-		
-		g.addEdge("12", 2, "1", "2");
-		g.addEdge("21", 2, "2", "1");
-		
-		g.addEdge("13", 4, "1", "3");
-		g.addEdge("31", 4, "3", "1");
-		
-		g.addEdge("23", 3, "2", "3");
-		g.addEdge("32", 3, "3", "2");
-		
-		g.addEdge("24", 4, "2", "4");
-		g.addEdge("42", 4, "4", "2");
-		
-		g.addEdge("34", 5, "3", "4");
-		g.addEdge("43", 5, "4", "3");
-		
-		g.addEdge("35", 3, "3", "5");
-		g.addEdge("53", 3, "5", "3");
-		
-		g.addEdge("45", 6, "4", "5");
-		g.addEdge("54", 6, "5", "4");
-		
-		Floyd floyd = new Floyd(g);
-		floyd.algorithm("1", "5");
-		
-	}
+//	public static void main(String[] args){
+//		Graph<String,Integer> g = new Graph<>(true);
+//		g.addVertex("1", "1");
+//		g.addVertex("2", "1");
+//		g.addVertex("3", "1");
+//		g.addVertex("4", "1");
+//		g.addVertex("5", "1");
+//		
+//		g.addEdge("12", 2, "1", "2");
+//		g.addEdge("21", 2, "2", "1");
+//		
+//		g.addEdge("13", 4, "1", "3");
+//		g.addEdge("31", 4, "3", "1");
+//		
+//		g.addEdge("23", 3, "2", "3");
+//		g.addEdge("32", 3, "3", "2");
+//		
+//		g.addEdge("24", 4, "2", "4");
+//		g.addEdge("42", 4, "4", "2");
+//		
+//		g.addEdge("34", 5, "3", "4");
+//		g.addEdge("43", 5, "4", "3");
+//		
+//		g.addEdge("35", 3, "3", "5");
+//		g.addEdge("53", 3, "5", "3");
+//		
+//		g.addEdge("45", 6, "4", "5");
+//		g.addEdge("54", 6, "5", "4");
+//		
+//		Floyd floyd = new Floyd(g);
+//		floyd.algorithm("1", "5");
+//		
+//	}
 
 }
