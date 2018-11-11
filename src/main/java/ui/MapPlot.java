@@ -7,7 +7,6 @@ package ui;
 
 import java.awt.Color;
 import javax.swing.JFrame;
-import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -28,14 +27,13 @@ public class MapPlot extends JFrame {
 
     // Create chart
     JFreeChart chart = ChartFactory.createScatterPlot(
-        "Boys VS Girls weight comparison chart", 
+        "Cidades", 
         "X-Axis", "Y-Axis", dataset);
 
     
     //Changes background color
     XYPlot plot = (XYPlot)chart.getPlot();
-    plot.setBackgroundPaint(new Color(255,228,196));
-    
+    plot.setBackgroundPaint(new Color(255,228,196));    
    
     // Create Panel
     ChartPanel panel = new ChartPanel(chart);
@@ -45,14 +43,4 @@ public class MapPlot extends JFrame {
     this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     this.setVisible(true);
   }
-
-//  public static void main(String[] args) {
-//    SwingUtilities.invokeLater(() -> {
-//      MapPlot example = new MapPlot("Scatter Chart Example | BORAJI.COM");
-//      example.setSize(800, 400);
-//      example.setLocationRelativeTo(null);
-//      example.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-//      example.setVisible(true);
-//    });
-//  }
 }

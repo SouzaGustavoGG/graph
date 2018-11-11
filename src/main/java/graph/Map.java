@@ -1,6 +1,7 @@
 
 package graph;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.jfree.data.xy.XYDataset;
 import org.jfree.data.xy.XYSeries;
@@ -10,16 +11,23 @@ public class Map {
    
     private List<Coordinate> coordinates;
     
+    public Map() {
+        this.coordinates = new ArrayList<Coordinate>();
+    }
+    
     public void addCoordinate(Coordinate cor) {
-        this.coordinates.add(cor);
+        try {
+            this.coordinates.add(cor);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
     
     private List<Coordinate> getCoordinates() {
         return this.coordinates;
     }
        
-    
-    private XYDataset createDataset() {
+    public XYDataset createDataset() {
         XYSeriesCollection dataset = new XYSeriesCollection();
         XYSeries series = new XYSeries("Cidades");
 
@@ -30,8 +38,7 @@ public class Map {
         });
         
         
-        dataset.addSeries(series);
-        
+        dataset.addSeries(series);        
         return dataset;
     }
     
