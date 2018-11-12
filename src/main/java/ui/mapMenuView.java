@@ -190,6 +190,8 @@ public class mapMenuView extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonSearchAStartActionPerformed
 
     private void jButtonDiffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDiffActionPerformed
+    	this.map.getAStar("P", "G");
+    	
         String name1 = JOptionPane.showInputDialog("Nome da primeira coordenada");
         Coordinate cor1 = this.map.getCordinateByName(name1);
         

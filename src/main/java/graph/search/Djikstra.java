@@ -58,7 +58,7 @@ public class Djikstra<V,E  extends Number>{
 	}
 	
 	private void getBest(String startId, String stopId, List<Predecessor<V,E>> predecessorsResult){
-		if(stopId == startId){
+		if(stopId.equals(startId)){
 			Predecessor<V,E> predecessor = getPredecessor(stopId);
 			predecessorsResult.add(0, new Predecessor<V, E>(predecessor.getDistance(), predecessor.getVertex()));
 			return;

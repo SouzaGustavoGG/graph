@@ -39,6 +39,14 @@ public class Graph <V,E>{
 		this.vertices = vertices; 
 	}
 	
+	public void addVertex(String id){
+		if(contains(id)){
+			throw new IllegalArgumentException("Vertex ("+ id +") already exists");
+		}
+		Vertex<V,E> vertex = new Vertex<V,E>(id);
+		vertices.add(vertex);
+	}
+	
 	public void addVertex(String id, V value){
 		if(contains(id)){
 			throw new IllegalArgumentException("Vertex ("+ id +") already exists");
