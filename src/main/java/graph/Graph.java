@@ -3,12 +3,13 @@ package graph;
 import java.util.ArrayList;
 import java.util.List;
 
+import graph.search.AStar;
 import graph.search.BreadthFirstSearch;
+import graph.search.Coloring;
 import graph.search.DepthFirstSearch;
 import graph.search.Djikstra;
 import graph.search.Floyd;
 import graph.search.Prim;
-import graph.search.Coloring;
 
 public class Graph <V,E>{
 	
@@ -195,6 +196,11 @@ public class Graph <V,E>{
             Coloring color = new Coloring(numVertices, matrix);
             color.graphColor();
         }
+        
+    public void aStar(String startId, String stopId){
+    	AStar aStar = new AStar(this);
+    	aStar.algorithm(startId, stopId);
+    }
 	
 	public boolean contains(String id){
 		return vertices.stream().filter( v -> v.getId().equals(id)).findFirst().isPresent();
