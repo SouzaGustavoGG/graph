@@ -8,6 +8,7 @@ package ui;
 import graph.Coordinate;
 import graph.Graph;
 import graph.Map;
+import graph.search.AStar;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
@@ -47,7 +48,7 @@ public class mapMenuView extends javax.swing.JFrame {
         jLabelTitle = new javax.swing.JLabel();
         jButtonAddCoordinate = new javax.swing.JButton();
         jButtonRemoveCoordinate = new javax.swing.JButton();
-        jButtonSearchAStart = new javax.swing.JButton();
+        jButtonPlotMap = new javax.swing.JButton();
         jButtonBack = new javax.swing.JButton();
         jButtonDiff = new javax.swing.JButton();
 
@@ -67,10 +68,10 @@ public class mapMenuView extends javax.swing.JFrame {
 
         jButtonRemoveCoordinate.setText("Remover");
 
-        jButtonSearchAStart.setText("Mostrar Coordenadas");
-        jButtonSearchAStart.addActionListener(new java.awt.event.ActionListener() {
+        jButtonPlotMap.setText("Mostrar Coordenadas");
+        jButtonPlotMap.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonSearchAStartActionPerformed(evt);
+                jButtonPlotMapActionPerformed(evt);
             }
         });
 
@@ -105,7 +106,7 @@ public class mapMenuView extends javax.swing.JFrame {
                         .addGap(65, 65, 65)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButtonAddCoordinate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonSearchAStart, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))))
+                            .addComponent(jButtonPlotMap, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButtonRemoveCoordinate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -123,7 +124,7 @@ public class mapMenuView extends javax.swing.JFrame {
                     .addComponent(jButtonRemoveCoordinate, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButtonSearchAStart, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonPlotMap, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonDiff, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(86, 86, 86)
                 .addComponent(jButtonBack)
@@ -141,29 +142,6 @@ public class mapMenuView extends javax.swing.JFrame {
         if(x.equals("") || y.equals("")) {
             JOptionPane.showMessageDialog(null, "X e Y não podem ser nulos");
             return;
-        }
-        
-        if(true) {
-            this.map.addCoordinate(new Coordinate(950 , 231, "A"));
-            this.map.addCoordinate(new Coordinate(607 , 486, "B"));
-            this.map.addCoordinate(new Coordinate(891 , 762, "C"));
-            this.map.addCoordinate(new Coordinate(456 , 19,  "D"));
-            this.map.addCoordinate(new Coordinate(821 , 445, "E"));
-            this.map.addCoordinate(new Coordinate(615 , 792, "F"));
-            this.map.addCoordinate(new Coordinate(922 , 738, "G"));
-            this.map.addCoordinate(new Coordinate(176 , 406, "H"));
-            this.map.addCoordinate(new Coordinate(935 , 917, "I"));
-            this.map.addCoordinate(new Coordinate(410 , 894, "J"));
-            this.map.addCoordinate(new Coordinate(58 , 353,  "K"));
-            this.map.addCoordinate(new Coordinate(813 , 10,  "L"));
-            this.map.addCoordinate(new Coordinate(139 , 203, "M"));
-            this.map.addCoordinate(new Coordinate(199 , 604, "N"));
-            this.map.addCoordinate(new Coordinate(272 , 199, "O"));
-            this.map.addCoordinate(new Coordinate(15 , 747,  "P"));
-            this.map.addCoordinate(new Coordinate(445 , 932, "Q"));
-            this.map.addCoordinate(new Coordinate(466 , 419, "R"));
-            this.map.addCoordinate(new Coordinate(846 , 525, "S"));
-            this.map.addCoordinate(new Coordinate(203 , 672, "T")); 
         }
         
         try {
@@ -184,15 +162,33 @@ public class mapMenuView extends javax.swing.JFrame {
         new mainMenuView(this.graph, this.map);
     }//GEN-LAST:event_jButtonBackActionPerformed
 
-    private void jButtonSearchAStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSearchAStartActionPerformed
-        XYDataset dataset = this.map.createDataset();
-        new MapPlot("Coordenadas", dataset);
-    }//GEN-LAST:event_jButtonSearchAStartActionPerformed
+    private void jButtonPlotMapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPlotMapActionPerformed
+        this.map.addCoordinate(new Coordinate(950 , 231, "A"));
+        this.map.addCoordinate(new Coordinate(607 , 486, "B"));
+        this.map.addCoordinate(new Coordinate(891 , 762, "C"));
+        this.map.addCoordinate(new Coordinate(456 , 19,  "D"));
+        this.map.addCoordinate(new Coordinate(821 , 445, "E"));
+        this.map.addCoordinate(new Coordinate(615 , 792, "F"));
+        this.map.addCoordinate(new Coordinate(922 , 738, "G"));
+        this.map.addCoordinate(new Coordinate(176 , 406, "H"));
+        this.map.addCoordinate(new Coordinate(935 , 917, "I"));
+        this.map.addCoordinate(new Coordinate(410 , 894, "J"));
+        this.map.addCoordinate(new Coordinate(58 , 353,  "K"));
+        this.map.addCoordinate(new Coordinate(813 , 10,  "L"));
+        this.map.addCoordinate(new Coordinate(139 , 203, "M"));
+        this.map.addCoordinate(new Coordinate(199 , 604, "N"));
+        this.map.addCoordinate(new Coordinate(272 , 199, "O"));
+        this.map.addCoordinate(new Coordinate(15 , 747,  "P"));
+        this.map.addCoordinate(new Coordinate(445 , 932, "Q"));
+        this.map.addCoordinate(new Coordinate(466 , 419, "R"));
+        this.map.addCoordinate(new Coordinate(846 , 525, "S"));
+        this.map.addCoordinate(new Coordinate(203 , 672, "T"));
+        
+        new MapPlot("Coordenadas", this.map.createDataset());
+    }//GEN-LAST:event_jButtonPlotMapActionPerformed
 
     private void jButtonDiffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDiffActionPerformed
-    	this.map.getAStar("P", "G");
-    	
-        String name1 = JOptionPane.showInputDialog("Nome da primeira coordenada");
+  	String name1 = JOptionPane.showInputDialog("Nome da primeira coordenada");
         Coordinate cor1 = this.map.getCordinateByName(name1);
         
         if(cor1 == null) {
@@ -207,16 +203,18 @@ public class mapMenuView extends javax.swing.JFrame {
             return;
         }
         
-        String result = this.map.calculateDistance(name1, name2);
-        JOptionPane.showMessageDialog(null, "Distância igual a: " + result);
+        String result = this.map.getAStar(name1, name2);
+
+        JOptionPane.showMessageDialog(null, result);
     }//GEN-LAST:event_jButtonDiffActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAddCoordinate;
     private javax.swing.JButton jButtonBack;
     private javax.swing.JButton jButtonDiff;
+    private javax.swing.JButton jButtonPlotMap;
     private javax.swing.JButton jButtonRemoveCoordinate;
-    private javax.swing.JButton jButtonSearchAStart;
     private javax.swing.JLabel jLabelTitle;
     // End of variables declaration//GEN-END:variables
 }
+

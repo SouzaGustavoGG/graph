@@ -205,10 +205,10 @@ public class Graph <V,E>{
             color.graphColor();
         }
         
-    public void aStar(String startId, String stopId){
-    	AStar aStar = new AStar(this);
-    	aStar.algorithm(startId, stopId);
-    }
+        public void aStar(String startId, String stopId){
+            AStar aStar = new AStar(this);
+            aStar.algorithm(startId, stopId);
+        }
 	
 	public boolean contains(String id){
 		return vertices.stream().filter( v -> v.getId().equals(id)).findFirst().isPresent();
@@ -227,11 +227,11 @@ public class Graph <V,E>{
 	}
 
 	public Vertex<V,E> getVertexById(String id){
-		for(Vertex<V,E> v : vertices){
-			if(v.getId().equals(id)){
-				return v; 
-			}
-		}
-		return null;
+            for(Vertex<V,E> v : vertices){
+                if(v.getId().equals(id)){
+                        return v; 
+                }
+            }
+            return null;
 	}
 }

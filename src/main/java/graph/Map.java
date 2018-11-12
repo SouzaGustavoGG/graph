@@ -58,7 +58,6 @@ public class Map {
     public XYDataset createDataset() {
         XYSeriesCollection dataset = new XYSeriesCollection();
         
-
         List<Coordinate> coordinates = this.getCoordinates();
         
         coordinates.forEach((coordinate) -> {
@@ -67,28 +66,32 @@ public class Map {
             dataset.addSeries(series);
         });
         
-
         return dataset;
     }
     
-    public void getAStar(String startId, String stopId){
+    public String getAStar(String startId, String stopId){
     	
     	this.graphAStar = new Graph<>(false);
-    	this.graphAStar.addVertex("F", stopId.equals("F") ? new Double(0.0) : Double.valueOf(calculateDistance("F", stopId)));
-    	this.graphAStar.addVertex("G", stopId.equals("G") ? new Double(0.0) :Double.valueOf(calculateDistance("G", stopId)));
-    	this.graphAStar.addVertex("H", stopId.equals("H") ? new Double(0.0) :Double.valueOf(calculateDistance("H", stopId)));
-    	this.graphAStar.addVertex("I", stopId.equals("I") ? new Double(0.0) :Double.valueOf(calculateDistance("I", stopId)));
-    	this.graphAStar.addVertex("J", stopId.equals("J") ? new Double(0.0) :Double.valueOf(calculateDistance("J", stopId)));
-    	this.graphAStar.addVertex("K", stopId.equals("K") ? new Double(0.0) :Double.valueOf(calculateDistance("K", stopId)));
-    	this.graphAStar.addVertex("L", stopId.equals("L") ? new Double(0.0) :Double.valueOf(calculateDistance("L", stopId)));
-    	this.graphAStar.addVertex("M", stopId.equals("M") ? new Double(0.0) :Double.valueOf(calculateDistance("M", stopId)));
-    	this.graphAStar.addVertex("N", stopId.equals("N") ? new Double(0.0) :Double.valueOf(calculateDistance("N", stopId)));
-    	this.graphAStar.addVertex("O", stopId.equals("O") ? new Double(0.0) :Double.valueOf(calculateDistance("O", stopId)));
-    	this.graphAStar.addVertex("P", stopId.equals("P") ? new Double(0.0) :Double.valueOf(calculateDistance("P", stopId)));
-    	this.graphAStar.addVertex("Q", stopId.equals("Q") ? new Double(0.0) :Double.valueOf(calculateDistance("Q", stopId)));
-    	this.graphAStar.addVertex("R", stopId.equals("R") ? new Double(0.0) :Double.valueOf(calculateDistance("R", stopId)));
-    	this.graphAStar.addVertex("S", stopId.equals("S") ? new Double(0.0) :Double.valueOf(calculateDistance("S", stopId)));
-    	this.graphAStar.addVertex("T", stopId.equals("T") ? new Double(0.0) :Double.valueOf(calculateDistance("T", stopId)));
+        this.graphAStar.addVertex("A", stopId.equals("A") ? 0.0 : Double.valueOf(calculateDistance("A", stopId)));
+        this.graphAStar.addVertex("B", stopId.equals("B") ? 0.0 : Double.valueOf(calculateDistance("B", stopId)));
+        this.graphAStar.addVertex("C", stopId.equals("C") ? 0.0 : Double.valueOf(calculateDistance("C", stopId)));
+        this.graphAStar.addVertex("D", stopId.equals("D") ? 0.0 : Double.valueOf(calculateDistance("D", stopId)));
+        this.graphAStar.addVertex("E", stopId.equals("E") ? 0.0 : Double.valueOf(calculateDistance("E", stopId)));
+    	this.graphAStar.addVertex("F", stopId.equals("F") ? 0.0 : Double.valueOf(calculateDistance("F", stopId)));
+    	this.graphAStar.addVertex("G", stopId.equals("G") ? 0.0 : Double.valueOf(calculateDistance("G", stopId)));
+    	this.graphAStar.addVertex("H", stopId.equals("H") ? 0.0 : Double.valueOf(calculateDistance("H", stopId)));
+    	this.graphAStar.addVertex("I", stopId.equals("I") ? 0.0 : Double.valueOf(calculateDistance("I", stopId)));
+    	this.graphAStar.addVertex("J", stopId.equals("J") ? 0.0 : Double.valueOf(calculateDistance("J", stopId)));
+    	this.graphAStar.addVertex("K", stopId.equals("K") ? 0.0 : Double.valueOf(calculateDistance("K", stopId)));
+    	this.graphAStar.addVertex("L", stopId.equals("L") ? 0.0 : Double.valueOf(calculateDistance("L", stopId)));
+    	this.graphAStar.addVertex("M", stopId.equals("M") ? 0.0 : Double.valueOf(calculateDistance("M", stopId)));
+    	this.graphAStar.addVertex("N", stopId.equals("N") ? 0.0 : Double.valueOf(calculateDistance("N", stopId)));
+    	this.graphAStar.addVertex("O", stopId.equals("O") ? 0.0 : Double.valueOf(calculateDistance("O", stopId)));
+    	this.graphAStar.addVertex("P", stopId.equals("P") ? 0.0 : Double.valueOf(calculateDistance("P", stopId)));
+    	this.graphAStar.addVertex("Q", stopId.equals("Q") ? 0.0 : Double.valueOf(calculateDistance("Q", stopId)));
+    	this.graphAStar.addVertex("R", stopId.equals("R") ? 0.0 : Double.valueOf(calculateDistance("R", stopId)));
+    	this.graphAStar.addVertex("S", stopId.equals("S") ? 0.0 : Double.valueOf(calculateDistance("S", stopId)));
+    	this.graphAStar.addVertex("T", stopId.equals("T") ? 0.0 : Double.valueOf(calculateDistance("T", stopId)));
     	
     	this.graphAStar.addEdge("PK", Double.valueOf(calculateDistance("P","K")), "P", "K");
     	this.graphAStar.addEdge("PH", Double.valueOf(calculateDistance("P","H")), "P", "H");
@@ -101,7 +104,7 @@ public class Map {
     	this.graphAStar.addEdge("MD", Double.valueOf(calculateDistance("M","D")), "M", "D");
     	
     	this.graphAStar.addEdge("DR", Double.valueOf(calculateDistance("D","R")), "D", "R");
-    	this.graphAStar.addEdge("MD", Double.valueOf(calculateDistance("D","L")), "D", "L");
+    	this.graphAStar.addEdge("DL", Double.valueOf(calculateDistance("D","L")), "D", "L");
     	
     	this.graphAStar.addEdge("LA", Double.valueOf(calculateDistance("L","A")), "L", "A");
     	this.graphAStar.addEdge("LR", Double.valueOf(calculateDistance("L","R")), "L", "R");
@@ -139,7 +142,7 @@ public class Map {
     	this.graphAStar.addEdge("OR", Double.valueOf(calculateDistance("O","R")), "O", "R");
     	
     	AStar astar = new AStar(this.graphAStar);
-    	astar.algorithm(startId, stopId);
+    	return astar.algorithm(startId, stopId);
     }
     
 }

@@ -38,7 +38,7 @@
                       <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="jButtonAddCoordinate" max="32767" attributes="0"/>
-                          <Component id="jButtonSearchAStart" pref="200" max="32767" attributes="0"/>
+                          <Component id="jButtonPlotMap" pref="200" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -63,7 +63,7 @@
               </Group>
               <EmptySpace pref="111" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jButtonSearchAStart" min="-2" pref="50" max="-2" attributes="0"/>
+                  <Component id="jButtonPlotMap" min="-2" pref="50" max="-2" attributes="0"/>
                   <Component id="jButtonDiff" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
@@ -103,12 +103,12 @@
         <Property name="text" type="java.lang.String" value="Remover"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButtonSearchAStart">
+    <Component class="javax.swing.JButton" name="jButtonPlotMap">
       <Properties>
         <Property name="text" type="java.lang.String" value="Mostrar Coordenadas"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonSearchAStartActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonPlotMapActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButtonBack">
