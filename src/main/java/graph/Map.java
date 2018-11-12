@@ -1,37 +1,69 @@
 
 package graph;
 
+import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import org.jfree.data.xy.XYDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 
 public class Map {
    
-    private List<Coordinate> coordinates;
+    private final List<Coordinate> coordinates;
+    
+    public Map() {
+        this.coordinates = new ArrayList<>();
+    }
     
     public void addCoordinate(Coordinate cor) {
-        this.coordinates.add(cor);
+        try {
+            Coordinate tmp = this.getCordinateByName(cor.getName());
+            if(tmp == null) { // Check to see if this name has been used already
+                this.coordinates.add(cor);
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
     
     private List<Coordinate> getCoordinates() {
         return this.coordinates;
     }
-       
     
-    private XYDataset createDataset() {
+    public String calculateDistance(String corName1, String corName2) {
+        Coordinate cor1 = this.getCordinateByName(corName1);
+        Coordinate cor2 = this.getCordinateByName(corName2);
+        
+        int diff_x = Math.abs(cor1.getPosX() - cor2.getPosX());
+        int diff_y = Math.abs(cor1.getPosY() - cor2.getPosY());
+        
+        return diff_x + diff_y + "";        
+    }
+    
+    public Coordinate getCordinateByName(String name) {        
+        for(Coordinate cor : this.getCoordinates()){
+            if(cor.getName().equals(name)){
+                    return cor; 
+            }
+        }
+  
+        return null;       
+    }
+       
+    public XYDataset createDataset() {
         XYSeriesCollection dataset = new XYSeriesCollection();
-        XYSeries series = new XYSeries("Cidades");
+        
 
         List<Coordinate> coordinates = this.getCoordinates();
         
         coordinates.forEach((coordinate) -> {
+            XYSeries series = new XYSeries(coordinate.getName());
             series.add(coordinate.getPosX(), coordinate.getPosY());
+            dataset.addSeries(series);
         });
         
-        
-        dataset.addSeries(series);
-        
+
         return dataset;
     }
     
