@@ -40,6 +40,7 @@ public class GeneticAlgorithm <V  extends Number, E  extends Number> implements 
 	
 	public void execute(){
 		createInitialPopulation();
+		naturalSelection();
 		currentGeneration = 0;
 		double bestValue = 0.0;
 		do{
@@ -63,23 +64,11 @@ public class GeneticAlgorithm <V  extends Number, E  extends Number> implements 
 		String[] currentWay, bestWay = null;
 		double bestWayValue = 999999999999.0;
 		
-		
-		String chromosome1 = "", chromosome2 = "";
-		
 		double currentWayValue = 0.0;
 		for(int i = 0; i < population.size(); i++){
 			currentWay = population.get(i);
 			
-			for(int j = 0; j <= currentWay.length-2; j+=2){
-				chromosome1 = currentWay[j];
-				chromosome2 = currentWay[j+1];
-				
-				if(graph.adjacent(chromosome1, chromosome2)){
-					currentWayValue += graph.getVertexById(chromosome1).getEdgeByVertexId(chromosome2).doubleValue();
-				} else {
-					currentWayValue += 999.0;
-				}
-			}
+			currentWayValue = calculateDistance(currentWay);
 			if(currentWayValue < bestWayValue){
 				bestWayValue = currentWayValue;
 				bestWay = currentWay;
@@ -87,6 +76,22 @@ public class GeneticAlgorithm <V  extends Number, E  extends Number> implements 
 		}
 		System.out.println("Geração numero (" + currentGeneration + "): " + Arrays.toString(bestWay) + " "+bestWayValue);
 		return bestWayValue; 
+	}
+	
+	private double calculateDistance(String[] chromosome){
+		double currentWayValue = 0.0;
+		String gene1 = "", gene2 = "";
+		for(int j = 0; j <= chromosome.length-2; j+=2){
+			gene1 = chromosome[j];
+			gene2 = chromosome[j+1];
+			
+			if(graph.adjacent(gene1, gene2)){
+				currentWayValue += graph.getVertexById(gene1).getEdgeByVertexId(gene2).doubleValue();
+			} else {
+				currentWayValue += 999.0;
+			}
+		}
+		return currentWayValue;
 	}
 	
 	private void createInitialPopulation(){
@@ -111,7 +116,25 @@ public class GeneticAlgorithm <V  extends Number, E  extends Number> implements 
 	}
 	
 	private void naturalSelection(){
+		List<String[]> newPopulation = new ArrayList<>();
+		final double K = 0.75;
 		
+		for(int i = 0; i < populationSize*2; i++){
+			
+			String[] chromosome1 = population.get( ThreadLocalRandom.current().nextInt(0, population.size()));
+			String[] chromosome2 = population.get( ThreadLocalRandom.current().nextInt(0, population.size()));
+			double result1 = calculateDistance(chromosome1);
+			double result2 = calculateDistance(chromosome2);
+			
+			int r = ThreadLocalRandom.current().nextInt(0, 1);
+			
+			if(r < K){
+				newPopulation.add(result1 > result2 ? chromosome1: chromosome2);
+			} else {
+				newPopulation.add(result1 > result2 ? chromosome2: chromosome1);
+			}
+			
+		}
 	}
 
 	private boolean isNewChromosome(String[] chromosome){
