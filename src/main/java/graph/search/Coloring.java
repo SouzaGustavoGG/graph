@@ -51,18 +51,11 @@ public class Coloring {
     }
     
     public void display() {
-        String cores[] = new String[] {
-            "Vermelho", "Azul", "Branco", 
-            "Preto", "Amarelho", "Verde", 
-            "Roxo", "Rosa", "Marrom", "Laranja"
-        };
+        System.out.print("\nColors : ");
+        for (int i = 0; i < V; i++)
+            System.out.print(color[i] +" ");
         
-        String result = "Solução: \n\n";
-        for (int i = 0; i < V; i++) {
-            result = result.concat("Vértice ( " + (i +1) + ") -> Cor: " + cores[i] + "\n");
-        }
-        
-        JOptionPane.showMessageDialog(null, result);
+        System.out.println();
     }
     
 }

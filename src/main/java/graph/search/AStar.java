@@ -116,18 +116,15 @@ public class AStar <V  extends Number, E  extends Number> {
         getBest(startId, stopId, predecessorsResult);
     }
 
-    private String showResult(List<Predecessor<V,E>> predecessorsResult){
+    private void showResult(List<Predecessor<V,E>> predecessorsResult){
         int count = 1;
-        String result = "";
         for(Predecessor<V,E> p : predecessorsResult){
             if(count != predecessorsResult.size())
-                result.concat(p.getVertex().getId() + " -> ");
+                    System.out.print(p.getVertex().getId() + " -> ");
             else
-                result.concat(p.getVertex().getId());
+                    System.out.print(p.getVertex().getId());
             count++;
         }
-        
-        return result;
     }
 
     private Predecessor<V,E> getPredecessor(String id, List<Predecessor<V,E>> preds){
