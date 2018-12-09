@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
+import console.Logger;
 import graph.Graph;
 import graph.Vertex;
 
@@ -15,9 +16,10 @@ public class GeneticAlgorithm <V  extends Number, E  extends Number> implements 
             GENERATIONS_MAX, BEST_VALUE, CONVERGENCE
 	}
 	
+	private Logger logger = new Logger();
+	
 	private static int currentGeneration;
 	private int numberOfGenerations;
-	//private E expectedValue;
 	
 	private int populationSize;
 	private StopMode stopMode;
@@ -40,17 +42,16 @@ public class GeneticAlgorithm <V  extends Number, E  extends Number> implements 
 	
 	public void execute(){
 		createInitialPopulation();
-		naturalSelection();
 		currentGeneration = 0;
 		double bestValue = 0.0;
 		do {
-                    crossover(2,5);
-                    mutation(2);
-                    bestValue = result();
-		} 
-                while(checkStop(currentGeneration++));
-                
-		System.err.println("Melhor caminho valor: "+ bestValue);
+			naturalSelection();
+            crossover(2,5);
+            mutation(2);
+            bestValue = result();
+		} while(checkStop(++currentGeneration));
+		
+		Logger.close();
 	}
 	
 	private boolean checkStop(int currentGeneration){
@@ -63,27 +64,31 @@ public class GeneticAlgorithm <V  extends Number, E  extends Number> implements 
 	}
 	
 	private double result(){
+		Logger.log("*******GERACAO NUMERO (" + currentGeneration + ")*******\n");
+		
 		String[] currentWay, bestWay = null;
 		double bestWayValue = 999999999999.0;
-		
 		double currentWayValue = 0.0;
+		
 		for(int i = 0; i < population.size(); i++){
-                    currentWay = population.get(i);
+            currentWay = population.get(i);
 
-                    currentWayValue = calculateDistance(currentWay);
-                    if(currentWayValue < bestWayValue){
-                            bestWayValue = currentWayValue;
-                            bestWay = currentWay;
-                    }
+            currentWayValue = calculateDistance(currentWay);
+            if(currentWayValue < bestWayValue){
+                    bestWayValue = currentWayValue;
+                    bestWay = currentWay;
+            }
+            Logger.log( Arrays.toString(currentWay) + " " + currentWayValue + "\n");
 		}
 		System.out.println("Geracao numero (" + currentGeneration + "): " + Arrays.toString(bestWay) + " "+bestWayValue);
+		Logger.log("Melhor da geração (" + currentGeneration + "): " + Arrays.toString(bestWay) + " "+ bestWayValue + "\n");
 		return bestWayValue; 
 	}
 	
 	private double calculateDistance(String[] chromosome){
 		double currentWayValue = 0.0;
 		String gene1, gene2 = "";
-		for(int j = 0; j <= chromosome.length-2; j+=2){
+		for(int j = 0; j <= chromosome.length-2; j++){
 			gene1 = chromosome[j];
 			gene2 = chromosome[j+1];
 			
@@ -92,6 +97,14 @@ public class GeneticAlgorithm <V  extends Number, E  extends Number> implements 
 			} else {
 				currentWayValue += 999.0;
 			}
+		}
+		
+		gene1 = chromosome[0];
+		gene2 = chromosome[chromosome.length-1];
+		if(graph.adjacent(gene1, gene2)){
+			currentWayValue += graph.getVertexById(gene1).getEdgeByVertexId(gene2).doubleValue();
+		} else {
+			currentWayValue += 999.0;
 		}
 		return currentWayValue;
 	}
@@ -150,7 +163,9 @@ public class GeneticAlgorithm <V  extends Number, E  extends Number> implements 
 	
 	private void crossover(int start, int stop){
 		int crossingSize = (int) ((int) population.size() * crossingRate); // qtd de individuos que sofreram cruzamento
-		int minRange = ThreadLocalRandom.current().nextInt(0, population.size() - crossingSize); //range de cruzamento
+        int diff = (population.size() - crossingSize);
+        diff = diff > 0 ? diff : 1;
+		int minRange = ThreadLocalRandom.current().nextInt(0, diff); //range de cruzamento
 		int maxRange = minRange+crossingSize;
 		
 		List<String[]> newPopulation = new ArrayList<>();
@@ -173,7 +188,7 @@ public class GeneticAlgorithm <V  extends Number, E  extends Number> implements 
 				newPopulation.add(child1);
 				newPopulation.add(child2);
 				
-			} else { //nï¿½o sofre cruzamento
+			} else { //nao sofre cruzamento
 				newPopulation.add(population.get(i));
 				newPopulation.add(population.get(i+1));
 			}
@@ -225,8 +240,8 @@ public class GeneticAlgorithm <V  extends Number, E  extends Number> implements 
 		}
 		
 		int mutationSize = (int) ((int) population.size() * mutationRate); // qtd de individuos que sofreram mutacao
-                int diff = (population.size() - mutationSize);
-                diff = diff > 0 ? diff : 1;
+        int diff = (population.size() - mutationSize);
+        diff = diff > 0 ? diff : 1;
 		int minRange = ThreadLocalRandom.current().nextInt(diff); //range de mutacao
 		int maxRange = minRange + mutationSize;
 		
