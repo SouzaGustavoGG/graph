@@ -10,6 +10,7 @@ import graph.Graph;
 import graph.search.GeneticAlgorithm;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import javax.swing.JOptionPane;
 
 public class GATravellingSalesmanView extends javax.swing.JFrame {
 
@@ -216,7 +217,8 @@ public class GATravellingSalesmanView extends javax.swing.JFrame {
             GeneticAlgorithm.StopMode.GENERATIONS_MAX
         );
         
-        ga.execute();
+        double bestResult = ga.run();
+        JOptionPane.showMessageDialog(null, "Melhor resposta: " + bestResult);
     }//GEN-LAST:event_jButtonExecutarActionPerformed
 
     private void jTextFieldCruzamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCruzamentoActionPerformed
