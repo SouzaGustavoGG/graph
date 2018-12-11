@@ -75,6 +75,7 @@ public class GeneticAlgorithm <V  extends Number, E  extends Number> implements 
 
             Logger.close();
             return bestPath + " " + Double.toString(bestValue);
+            
         }
 	
 	private boolean checkStop(int currentGeneration){
