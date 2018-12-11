@@ -41,18 +41,41 @@ public class GeneticAlgorithm <V  extends Number, E  extends Number> implements 
 	}
 	
 	public void execute(){
-		createInitialPopulation();
-		currentGeneration = 0;
-		double bestValue = 0.0;
-		do {
-			naturalSelection();
-            crossover(2,5);
-            mutation(2);
-            bestValue = result();
-		} while(checkStop(++currentGeneration));
-		
-		Logger.close();
+//		createInitialPopulation();
+//		currentGeneration = 0;
+//		String bestValue;
+//		do {
+//                    naturalSelection();
+//                    crossover(2,5);
+//                    mutation(2);
+//                    bestValue = result();
+//		} while(checkStop(++currentGeneration));
+//		
+//		Logger.close();
 	}
+        
+        public String run() {
+            createInitialPopulation();
+            currentGeneration = 0;
+            double bestValue = Double.MAX_VALUE;
+            String bestPath = "";
+            do {
+                naturalSelection();
+                crossover(2,5);
+                mutation(2);
+                ArrayList<String> currentBest = result();
+                double curentBestValue = Double.parseDouble(currentBest.get(1));
+                
+                if(curentBestValue < bestValue) {
+                     bestValue = curentBestValue;
+                     bestPath = currentBest.get(0);
+                }
+                
+            } while(checkStop(++currentGeneration));
+
+            Logger.close();
+            return bestPath + " " + Double.toString(bestValue);
+        }
 	
 	private boolean checkStop(int currentGeneration){
 		switch(stopMode){
@@ -63,7 +86,7 @@ public class GeneticAlgorithm <V  extends Number, E  extends Number> implements 
 		return true;
 	}
 	
-	private double result(){
+	private ArrayList<String> result(){
 		Logger.log("*******GERACAO NUMERO (" + currentGeneration + ")*******\n");
 		
 		String[] currentWay, bestWay = null;
@@ -71,18 +94,23 @@ public class GeneticAlgorithm <V  extends Number, E  extends Number> implements 
 		double currentWayValue = 0.0;
 		
 		for(int i = 0; i < population.size(); i++){
-            currentWay = population.get(i);
+                    currentWay = population.get(i);
 
-            currentWayValue = calculateDistance(currentWay);
-            if(currentWayValue < bestWayValue){
-                    bestWayValue = currentWayValue;
-                    bestWay = currentWay;
-            }
-            Logger.log( Arrays.toString(currentWay) + " " + currentWayValue + "\n");
+                    currentWayValue = calculateDistance(currentWay);
+                    if(currentWayValue < bestWayValue){
+                            bestWayValue = currentWayValue;
+                            bestWay = currentWay;
+                    }
+                    Logger.log( Arrays.toString(currentWay) + " " + currentWayValue + "\n");
 		}
 		System.out.println("Geracao numero (" + currentGeneration + "): " + Arrays.toString(bestWay) + " "+bestWayValue);
-		Logger.log("Melhor da geração (" + currentGeneration + "): " + Arrays.toString(bestWay) + " "+ bestWayValue + "\n");
-		return bestWayValue; 
+                
+		Logger.log("Melhor da geracao (" + currentGeneration + "): " + Arrays.toString(bestWay) + " "+ bestWayValue + "\n");
+                ArrayList<String> bestResult = new ArrayList();
+                bestResult.add(Arrays.toString(bestWay));
+                bestResult.add(String.valueOf(bestWayValue));
+                
+		return bestResult; 
 	}
 	
 	private double calculateDistance(String[] chromosome){
